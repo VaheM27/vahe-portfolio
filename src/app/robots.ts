@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://vahe.dev/sitemap.xml",
+    sitemap: "https://vahe-portfolio-psi.vercel.app/sitemap.xml",
   };
 }

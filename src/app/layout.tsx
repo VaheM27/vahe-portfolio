@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import Cursor from "@/components/Cursor/Cursor";
 
-const BASE_URL = "https://vahe.dev"; // update to your real domain
+const BASE_URL = "https://vahe-portfolio-psi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
