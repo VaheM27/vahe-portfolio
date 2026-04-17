@@ -46,10 +46,14 @@ export default function Hero() {
           <span className={styles.rolePrefix}>I build </span>
           <TypeAnimation
             sequence={[
-              "React / Next.js apps.", 2000,
-              "3D web experiences.", 2000,
-              "pixel-perfect UIs.", 2000,
-              "scalable frontends.", 2000,
+              "React / Next.js apps.",
+              2000,
+              "3D web experiences.",
+              2000,
+              "pixel-perfect UIs.",
+              2000,
+              "scalable frontends.",
+              2000,
             ]}
             wrapper="span"
             speed={50}
@@ -91,7 +95,14 @@ export default function Hero() {
             { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
             { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
           ].map(({ icon: Icon, href, label }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label={label}>
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+              aria-label={label}
+            >
               <Icon size={18} />
             </a>
           ))}
@@ -125,7 +136,6 @@ export default function Hero() {
         </motion.div>
         <span>Scroll</span>
       </motion.div>
-
     </section>
   );
 }

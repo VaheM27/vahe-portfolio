@@ -3,18 +3,24 @@ import { useEffect, useRef } from "react";
 import styles from "./ParticleBackground.module.scss";
 
 interface Particle {
-  x: number; y: number; vx: number; vy: number;
-  radius: number; alpha: number;
-  color: string; pulseOffset: number; pulseSpeed: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  alpha: number;
+  color: string;
+  pulseOffset: number;
+  pulseSpeed: number;
 }
 
 // Multiple green shades for light theme
 const COLORS = [
-  "5,150,105",    // emerald
-  "13,148,136",   // teal
-  "22,163,74",    // green
-  "101,163,13",   // lime
-  "16,185,129",   // mint
+  "5,150,105", // emerald
+  "13,148,136", // teal
+  "22,163,74", // green
+  "101,163,13", // lime
+  "16,185,129", // mint
 ];
 
 export default function ParticleBackground() {
@@ -28,7 +34,8 @@ export default function ParticleBackground() {
 
     let animId: number;
     let particles: Particle[] = [];
-    let mouseX = -1000, mouseY = -1000;
+    let mouseX = -1000,
+      mouseY = -1000;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -67,7 +74,8 @@ export default function ParticleBackground() {
         // Connect nearby particles
         for (let j = i + 1; j < particles.length; j++) {
           const q = particles[j];
-          const dx = p.x - q.x, dy = p.y - q.y;
+          const dx = p.x - q.x,
+            dy = p.y - q.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
             ctx.beginPath();
@@ -80,7 +88,8 @@ export default function ParticleBackground() {
         }
 
         // Mouse connection
-        const mdx = p.x - mouseX, mdy = p.y - mouseY;
+        const mdx = p.x - mouseX,
+          mdy = p.y - mouseY;
         const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
         if (mdist < 160) {
           ctx.beginPath();
@@ -92,7 +101,10 @@ export default function ParticleBackground() {
           p.vx += (mdx / mdist) * 0.012;
           p.vy += (mdy / mdist) * 0.012;
           const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-          if (speed > 1) { p.vx *= 0.85; p.vy *= 0.85; }
+          if (speed > 1) {
+            p.vx *= 0.85;
+            p.vy *= 0.85;
+          }
         }
 
         // Dot
@@ -105,9 +117,18 @@ export default function ParticleBackground() {
       animId = requestAnimationFrame(draw);
     };
 
-    const onMouse = (e: MouseEvent) => { mouseX = e.clientX; mouseY = e.clientY; };
-    const onLeave = () => { mouseX = -1000; mouseY = -1000; };
-    const onResize = () => { resize(); createParticles(); };
+    const onMouse = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+    const onLeave = () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    };
+    const onResize = () => {
+      resize();
+      createParticles();
+    };
 
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouse);

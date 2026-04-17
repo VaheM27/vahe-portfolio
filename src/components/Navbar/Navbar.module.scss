@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .navbar {
   position: fixed;
@@ -45,10 +45,14 @@
   transition: opacity 0.2s;
   margin-right: 4px;
   flex-shrink: 0;
-  &:hover { opacity: 0.8; }
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
-.bracket { color: var(--accent); }
+.bracket {
+  color: var(--accent);
+}
 
 .logoName {
   @include gradient-text(var(--grad-primary));
@@ -61,7 +65,9 @@
   gap: 1px;
 
   // Hide full nav at 960px and below, show hamburger instead
-  @media (max-width: 960px) { display: none; }
+  @media (max-width: 960px) {
+    display: none;
+  }
 }
 
 .link {
@@ -117,7 +123,9 @@
   padding: 6px;
   flex-shrink: 0;
 
-  @media (max-width: 960px) { display: flex; }
+  @media (max-width: 960px) {
+    display: flex;
+  }
 
   span {
     display: block;
@@ -129,9 +137,18 @@
   }
 
   &.open {
-    span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); background: var(--accent); }
-    span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); background: var(--accent); }
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 4px);
+      background: var(--accent);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -4px);
+      background: var(--accent);
+    }
   }
 }
 

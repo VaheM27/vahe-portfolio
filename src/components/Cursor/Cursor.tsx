@@ -13,8 +13,10 @@ export default function Cursor() {
     // Only show on non-touch devices
     if (window.matchMedia("(hover: none)").matches) return;
 
-    let dotX = 0, dotY = 0;
-    let ringX = 0, ringY = 0;
+    let dotX = 0,
+      dotY = 0;
+    let ringX = 0,
+      ringY = 0;
     let raf: number;
 
     const moveDot = (e: MouseEvent) => {
@@ -40,22 +42,14 @@ export default function Cursor() {
 
     const onEnter = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest("[data-hover]")
-      ) {
+      if (target.closest("a") || target.closest("button") || target.closest("[data-hover]")) {
         setHovering(true);
       }
     };
 
     const onLeave = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest("[data-hover]")
-      ) {
+      if (target.closest("a") || target.closest("button") || target.closest("[data-hover]")) {
         setHovering(false);
       }
     };

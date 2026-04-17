@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .experience {
   position: relative;
@@ -15,7 +15,9 @@
   overflow: hidden;
   box-shadow: var(--shadow-md);
 
-  @include tablet { flex-direction: column; }
+  @include tablet {
+    flex-direction: column;
+  }
 }
 
 .tabs {
@@ -30,7 +32,9 @@
     overflow-x: auto;
     border-right: none;
     border-bottom: 1px solid var(--border-subtle);
-    &::-webkit-scrollbar { display: none; }
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -50,12 +54,16 @@
   white-space: nowrap;
   text-align: left;
 
-  &:last-child { border-bottom: none; }
+  &:last-child {
+    border-bottom: none;
+  }
 
   @include tablet {
     border-bottom: none;
     border-right: 1px solid var(--border-subtle);
-    &:last-child { border-right: none; }
+    &:last-child {
+      border-right: none;
+    }
   }
 
   &:hover {
@@ -93,16 +101,22 @@
   }
 }
 
-.tabText { flex: 1; }
+.tabText {
+  flex: 1;
+}
 
 .content {
   flex: 1;
   padding: 40px;
 
-  @include mobile { padding: 24px; }
+  @include mobile {
+    padding: 24px;
+  }
 }
 
-.jobHeader { margin-bottom: 18px; }
+.jobHeader {
+  margin-bottom: 18px;
+}
 
 .role {
   font-size: clamp(1.1rem, 2.4vw, 1.35rem);
@@ -113,7 +127,9 @@
   margin-bottom: 10px;
 }
 
-.atSign { color: $text-muted; }
+.atSign {
+  color: $text-muted;
+}
 
 .company {
   @include gradient-text(var(--grad-primary));
@@ -133,7 +149,9 @@
     align-items: center;
     gap: 5px;
 
-    svg { color: var(--accent-alt); }
+    svg {
+      color: var(--accent-alt);
+    }
   }
 }
 
@@ -196,5 +214,7 @@
   border-radius: 5px;
   border: 1px solid var(--border-subtle);
 
-  svg { color: var(--accent-alt); }
+  svg {
+    color: var(--accent-alt);
+  }
 }

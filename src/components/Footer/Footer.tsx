@@ -11,12 +11,13 @@ export default function Footer() {
           <span className={styles.bracket}>/&gt;</span>
         </a>
         <p className={styles.copy}>
-          Designed & Built by{" "}
-          <span className={styles.highlight}>{personalInfo.name}</span>
+          Designed & Built by <span className={styles.highlight}>{personalInfo.name}</span>
           {" · "}
           {new Date().getFullYear()}
         </p>
-        <a href="#" className={styles.backTop}>Back to top ↑</a>
+        <a href="#" className={styles.backTop}>
+          Back to top ↑
+        </a>
       </div>
     </footer>
   );

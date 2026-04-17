@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .projects {
   position: relative;
@@ -6,9 +6,11 @@
   background: $bg-secondary;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
   }
@@ -28,18 +30,30 @@
   gap: 56px;
   align-items: center;
 
-  @include desktop { grid-template-columns: 1fr; gap: 36px; }
+  @include desktop {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
 
   &.reverse {
-    .cardVisual { order: 2; }
-    .cardInfo   { order: 1; }
+    .cardVisual {
+      order: 2;
+    }
+    .cardInfo {
+      order: 1;
+    }
     @include desktop {
-      .cardVisual, .cardInfo { order: unset; }
+      .cardVisual,
+      .cardInfo {
+        order: unset;
+      }
     }
   }
 }
 
-.cardVisual { position: relative; }
+.cardVisual {
+  position: relative;
+}
 
 .projectImg {
   border-radius: 14px;
@@ -54,7 +68,9 @@
   &:hover {
     transform: translateY(-6px) scale(1.01);
     border-color: var(--accent-border, var(--border-medium));
-    box-shadow: var(--shadow-xl), 0 0 0 1px var(--accent-border, var(--border-medium));
+    box-shadow:
+      var(--shadow-xl),
+      0 0 0 1px var(--accent-border, var(--border-medium));
   }
 }
 
@@ -78,9 +94,15 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    &:nth-child(1) { background: #ff5f57; }
-    &:nth-child(2) { background: #ffbd2e; }
-    &:nth-child(3) { background: #28c840; }
+    &:nth-child(1) {
+      background: #ff5f57;
+    }
+    &:nth-child(2) {
+      background: #ffbd2e;
+    }
+    &:nth-child(3) {
+      background: #28c840;
+    }
   }
 }
 
@@ -102,7 +124,10 @@
   min-width: 0;
 }
 
-.lock { font-size: 0.65rem; flex-shrink: 0; }
+.lock {
+  font-size: 0.65rem;
+  flex-shrink: 0;
+}
 
 .browserOpen {
   color: $text-muted;
@@ -113,7 +138,10 @@
   border-radius: 4px;
   transition: all 0.2s;
 
-  &:hover { color: var(--accent); background: rgba(var(--accent-rgb), 0.08); }
+  &:hover {
+    color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.08);
+  }
 }
 
 // ─── Live preview ────────────────────────────────────────────────────────────
@@ -125,7 +153,7 @@
   background: $bg-surface;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     z-index: 2;
@@ -210,7 +238,9 @@
   color: var(--accent);
 }
 
-.featuredCard:nth-child(2) .cardLabel { color: var(--accent-alt); }
+.featuredCard:nth-child(2) .cardLabel {
+  color: var(--accent-alt);
+}
 
 .cardTitle {
   font-size: clamp(1.4rem, 2.8vw, 1.9rem);
@@ -309,26 +339,42 @@
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 3px;
     opacity: 0;
     transition: opacity 0.3s;
   }
 
-  &:nth-child(5n+1)::before { background: var(--grad-primary); }
-  &:nth-child(5n+2)::before { background: var(--grad-alt); }
-  &:nth-child(5n+3)::before { background: var(--grad-teal-lime); }
-  &:nth-child(5n+4)::before { background: var(--grad-mint-em); }
-  &:nth-child(5n+5)::before { background: linear-gradient(90deg, var(--accent-4), var(--accent)); }
+  &:nth-child(5n + 1)::before {
+    background: var(--grad-primary);
+  }
+  &:nth-child(5n + 2)::before {
+    background: var(--grad-alt);
+  }
+  &:nth-child(5n + 3)::before {
+    background: var(--grad-teal-lime);
+  }
+  &:nth-child(5n + 4)::before {
+    background: var(--grad-mint-em);
+  }
+  &:nth-child(5n + 5)::before {
+    background: linear-gradient(90deg, var(--accent-4), var(--accent));
+  }
 
   &:hover {
     @include card-hover;
     transform: translateY(-6px);
 
-    &::before { opacity: 1; }
-    .folderIcon { color: var(--accent); }
+    &::before {
+      opacity: 1;
+    }
+    .folderIcon {
+      color: var(--accent);
+    }
   }
 }
 

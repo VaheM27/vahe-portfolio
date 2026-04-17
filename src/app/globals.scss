@@ -1,39 +1,46 @@
-@use '../styles/variables' as *;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@use "../styles/variables" as *;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap");
 
 // ─── Theme CSS Variables ───────────────────────────────────────────────────────
 :root {
   /* Primary accent — overridden by ThemePicker */
-  --accent:         #059669;
-  --accent-rgb:     5, 150, 105;
-  --accent-alt:     #0d9488;
+  --accent: #059669;
+  --accent-rgb: 5, 150, 105;
+  --accent-alt: #0d9488;
   --accent-alt-rgb: 13, 148, 136;
-  --accent-3:       #16a34a;
-  --accent-3-rgb:   22, 163, 74;
-  --accent-4:       #65a30d;
-  --accent-4-rgb:   101, 163, 13;
-  --accent-5:       #10b981;
-  --accent-5-rgb:   16, 185, 129;
-  --accent-lt:      #34d399;
+  --accent-3: #16a34a;
+  --accent-3-rgb: 22, 163, 74;
+  --accent-4: #65a30d;
+  --accent-4-rgb: 101, 163, 13;
+  --accent-5: #10b981;
+  --accent-5-rgb: 16, 185, 129;
+  --accent-lt: #34d399;
 
   /* Derived — cascade automatically when primaries change */
-  --border-subtle:  rgba(var(--accent-rgb), 0.1);
-  --border-medium:  rgba(var(--accent-rgb), 0.22);
-  --border-strong:  rgba(var(--accent-rgb), 0.4);
-  --shadow-sm:      0 2px 8px rgba(var(--accent-rgb), 0.08);
-  --shadow-md:      0 8px 30px rgba(var(--accent-rgb), 0.12);
-  --shadow-lg:      0 20px 60px rgba(var(--accent-rgb), 0.15);
-  --shadow-xl:      0 30px 80px rgba(var(--accent-rgb), 0.18);
+  --border-subtle: rgba(var(--accent-rgb), 0.1);
+  --border-medium: rgba(var(--accent-rgb), 0.22);
+  --border-strong: rgba(var(--accent-rgb), 0.4);
+  --shadow-sm: 0 2px 8px rgba(var(--accent-rgb), 0.08);
+  --shadow-md: 0 8px 30px rgba(var(--accent-rgb), 0.12);
+  --shadow-lg: 0 20px 60px rgba(var(--accent-rgb), 0.15);
+  --shadow-xl: 0 30px 80px rgba(var(--accent-rgb), 0.18);
 
   /* Gradients — cascade automatically */
-  --grad-primary:   linear-gradient(135deg, var(--accent) 0%, var(--accent-alt) 100%);
-  --grad-hero:      linear-gradient(135deg, var(--accent) 0%, var(--accent-alt) 40%, var(--accent-4) 100%);
-  --grad-alt:       linear-gradient(135deg, var(--accent-3) 0%, var(--accent-4) 100%);
-  --grad-mint-em:   linear-gradient(135deg, var(--accent-lt) 0%, var(--accent) 100%);
+  --grad-primary: linear-gradient(135deg, var(--accent) 0%, var(--accent-alt) 100%);
+  --grad-hero: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--accent-alt) 40%,
+    var(--accent-4) 100%
+  );
+  --grad-alt: linear-gradient(135deg, var(--accent-3) 0%, var(--accent-4) 100%);
+  --grad-mint-em: linear-gradient(135deg, var(--accent-lt) 0%, var(--accent) 100%);
   --grad-teal-lime: linear-gradient(135deg, var(--accent-alt) 0%, var(--accent-4) 100%);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -59,8 +66,12 @@ body {
   color: var(--accent);
 }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: $bg-secondary; }
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: $bg-secondary;
+}
 ::-webkit-scrollbar-thumb {
   background: var(--grad-primary);
   border-radius: 3px;
@@ -96,7 +107,7 @@ section {
   color: var(--accent);
 
   &::before {
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -117,14 +128,29 @@ section {
   line-height: 1.75;
 }
 
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
 
 // Hide native cursor on desktop when custom cursor is active
 @media (hover: hover) and (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
 }
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
 // ─── Buttons ─────────────────────────────────────────────────────────────────
 .btn-primary {
@@ -145,7 +171,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: var(--grad-teal-lime);
@@ -153,14 +179,21 @@ img { max-width: 100%; display: block; }
     transition: opacity 0.3s ease;
   }
 
-  span { position: relative; z-index: 1; }
+  span {
+    position: relative;
+    z-index: 1;
+  }
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.4);
-    &::before { opacity: 1; }
+    &::before {
+      opacity: 1;
+    }
   }
-  &:active { transform: translateY(0); }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .btn-outline {

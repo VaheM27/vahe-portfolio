@@ -23,7 +23,10 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       setTimeout(() => setProgress(78), 1050),
       setTimeout(() => setProgress(100), 1420),
       setTimeout(() => setPhase("exit"), 1780),
-      setTimeout(() => { setPhase("done"); onComplete(); }, 2850),
+      setTimeout(() => {
+        setPhase("done");
+        onComplete();
+      }, 2850),
     ];
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);

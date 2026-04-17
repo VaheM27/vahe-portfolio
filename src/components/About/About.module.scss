@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .about {
   position: relative;
@@ -6,9 +6,11 @@
   background: $bg-secondary;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
   }
@@ -21,7 +23,9 @@
   align-items: start;
   margin-top: 56px;
 
-  @include desktop { gap: 50px; }
+  @include desktop {
+    gap: 50px;
+  }
   @include tablet {
     grid-template-columns: 1fr;
     gap: 50px;
@@ -67,8 +71,12 @@
   border-bottom: 1px solid var(--border-subtle);
   transition: background 0.15s;
 
-  &:last-child { border-bottom: none; }
-  &:hover { background: $bg-secondary; }
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: $bg-secondary;
+  }
 }
 
 .detailIcon {
@@ -109,7 +117,9 @@
   align-items: center;
   gap: 36px;
 
-  @include tablet { order: -1; }
+  @include tablet {
+    order: -1;
+  }
 }
 
 .avatarWrap {
@@ -127,7 +137,7 @@
   animation: spin 20s linear infinite;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -4px;
     left: 50%;
@@ -141,8 +151,12 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .avatarInner {
@@ -152,7 +166,9 @@
   background: linear-gradient(135deg, $bg-surface, $white);
   border: 2px solid var(--border-medium);
   @include flex-center;
-  box-shadow: var(--shadow-md), inset 0 2px 8px rgba(var(--accent-rgb), 0.06);
+  box-shadow:
+    var(--shadow-md),
+    inset 0 2px 8px rgba(var(--accent-rgb), 0.06);
   overflow: hidden;
 }
 
@@ -185,8 +201,12 @@
 }
 
 @keyframes orbit {
-  from { transform: rotate(0deg) translateX(130px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+  from {
+    transform: rotate(0deg) translateX(130px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(130px) rotate(-360deg);
+  }
 }
 
 // ─── Stats ────────────────────────────────────────────────────────────────────
@@ -212,16 +232,26 @@
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 3px;
   }
 
-  &:nth-child(1)::before { background: var(--grad-primary); }
-  &:nth-child(2)::before { background: var(--grad-alt); }
-  &:nth-child(3)::before { background: var(--grad-mint-em); }
-  &:nth-child(4)::before { background: var(--grad-teal-lime); }
+  &:nth-child(1)::before {
+    background: var(--grad-primary);
+  }
+  &:nth-child(2)::before {
+    background: var(--grad-alt);
+  }
+  &:nth-child(3)::before {
+    background: var(--grad-mint-em);
+  }
+  &:nth-child(4)::before {
+    background: var(--grad-teal-lime);
+  }
 
   &:hover {
     @include card-hover;
@@ -235,10 +265,18 @@
   line-height: 1;
 }
 
-.statCard:nth-child(1) .statValue { @include gradient-text(var(--grad-primary)); }
-.statCard:nth-child(2) .statValue { @include gradient-text(var(--grad-alt)); }
-.statCard:nth-child(3) .statValue { @include gradient-text(var(--grad-mint-em)); }
-.statCard:nth-child(4) .statValue { @include gradient-text(var(--grad-teal-lime)); }
+.statCard:nth-child(1) .statValue {
+  @include gradient-text(var(--grad-primary));
+}
+.statCard:nth-child(2) .statValue {
+  @include gradient-text(var(--grad-alt));
+}
+.statCard:nth-child(3) .statValue {
+  @include gradient-text(var(--grad-mint-em));
+}
+.statCard:nth-child(4) .statValue {
+  @include gradient-text(var(--grad-teal-lime));
+}
 
 .statLabel {
   font-size: 0.72rem;

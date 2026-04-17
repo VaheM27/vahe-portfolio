@@ -1,8 +1,7 @@
 export const personalInfo = {
   name: "Vahe Mnatsakanyan",
   title: "Frontend Developer (React/Next.js)",
-  tagline:
-    "Crafting immersive web & 3D experiences with React, Next.js & Three.js",
+  tagline: "Crafting immersive web & 3D experiences with React, Next.js & Three.js",
   email: "vmnatsakanyan27@gmail.com",
   phone: "+374 98 674141",
   location: "Yerevan, Armenia",
@@ -141,14 +140,7 @@ export const projects = [
     title: "Yanium — AI Engineering Co.",
     description:
       "Frontend for a full-stack AI & product engineering company based in Yerevan. Built with Next.js and SCSS modules with immersive 3D interactive sections using Spline and Three.js. Integrated DigitalOcean Spaces for media management and ensured pixel-perfect, high-performance UI across all devices.",
-    tech: [
-      "Next.js",
-      "TypeScript",
-      "SCSS",
-      "Three.js",
-      "Spline",
-      "DigitalOcean",
-    ],
+    tech: ["Next.js", "TypeScript", "SCSS", "Three.js", "Spline", "DigitalOcean"],
     image: "/projects/yanium.png",
     color: "#059669",
     liveUrl: "https://yanium.com",
@@ -258,14 +250,7 @@ export const experience = [
       "Integrated DigitalOcean Spaces for scalable media management",
       "Ensured pixel-perfect, high-performance UI across all breakpoints",
     ],
-    tech: [
-      "Next.js",
-      "TypeScript",
-      "SCSS",
-      "Three.js",
-      "Spline",
-      "DigitalOcean",
-    ],
+    tech: ["Next.js", "TypeScript", "SCSS", "Three.js", "Spline", "DigitalOcean"],
   },
   {
     id: 2,

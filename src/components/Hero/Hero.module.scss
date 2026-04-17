@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .hero {
   min-height: 100vh;
@@ -10,7 +10,7 @@
   background: $bg-primary;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -10%;
     right: -5%;
@@ -18,12 +18,17 @@
     height: 55vw;
     max-width: 800px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--accent-5-rgb), 0.18) 0%, rgba(var(--accent-alt-rgb), 0.06) 50%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(var(--accent-5-rgb), 0.18) 0%,
+      rgba(var(--accent-alt-rgb), 0.06) 50%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -5%;
     left: -10%;
@@ -31,7 +36,12 @@
     height: 45vw;
     max-width: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--accent-4-rgb), 0.12) 0%, rgba(var(--accent-3-rgb), 0.06) 50%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(var(--accent-4-rgb), 0.12) 0%,
+      rgba(var(--accent-3-rgb), 0.06) 50%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 }
@@ -68,8 +78,13 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .greeting {
@@ -96,7 +111,9 @@
   min-height: 2.6rem;
 }
 
-.rolePrefix { color: $text-secondary; }
+.rolePrefix {
+  color: $text-secondary;
+}
 
 .typeText {
   @include gradient-text(var(--grad-primary));
@@ -128,7 +145,9 @@
   gap: 12px;
   z-index: 10;
 
-  @include tablet { display: none; }
+  @include tablet {
+    display: none;
+  }
 }
 
 .socialLink {
@@ -166,7 +185,9 @@
   gap: 12px;
   z-index: 10;
 
-  @include tablet { display: none; }
+  @include tablet {
+    display: none;
+  }
 }
 
 .email {
@@ -177,7 +198,9 @@
   writing-mode: vertical-rl;
   transition: color 0.2s;
 
-  &:hover { color: var(--accent); }
+  &:hover {
+    color: var(--accent);
+  }
 }
 
 .emailLine {
@@ -202,5 +225,7 @@
   text-transform: uppercase;
   z-index: 2;
 
-  svg { color: var(--accent); }
+  svg {
+    color: var(--accent);
+  }
 }

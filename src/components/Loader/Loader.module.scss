@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 // ─── Overlay ──────────────────────────────────────────────────────────────────
 .overlay {
@@ -69,12 +69,21 @@
 }
 
 @keyframes spin-cw {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse-ring {
-  0%, 100% { opacity: 0.35; transform: scale(0.97); }
-  50%       { opacity: 1;    transform: scale(1.03); }
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
 }
 
 // Orbiting glowing dot
@@ -87,13 +96,19 @@
   margin: -4.5px 0 0 -4.5px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 14px var(--accent), 0 0 5px var(--accent-alt);
+  box-shadow:
+    0 0 14px var(--accent),
+    0 0 5px var(--accent-alt);
   animation: orbit-dot 2.4s linear infinite;
 }
 
 @keyframes orbit-dot {
-  from { transform: rotate(0deg)   translateX(85px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(85px) rotate(-360deg); }
+  from {
+    transform: rotate(0deg) translateX(85px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(85px) rotate(-360deg);
+  }
 }
 
 // Logo text
@@ -106,7 +121,9 @@
   z-index: 1;
 }
 
-.bracket { color: var(--accent); }
+.bracket {
+  color: var(--accent);
+}
 
 .logName {
   @include gradient-text(var(--grad-hero));
@@ -139,7 +156,7 @@
 
   // Glowing leading dot
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     right: -1px;
     top: 50%;
@@ -148,7 +165,9 @@
     height: 11px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 12px var(--accent), 0 0 4px var(--accent-alt);
+    box-shadow:
+      0 0 12px var(--accent),
+      0 0 4px var(--accent-alt);
   }
 }
 
@@ -182,7 +201,7 @@
 
   // Accent-colored trailing glow on the left edge as it slides off
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;

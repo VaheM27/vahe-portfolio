@@ -22,9 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <AnimatePresence>
-        {!loaded && <Loader onComplete={() => setLoaded(true)} />}
-      </AnimatePresence>
+      <AnimatePresence>{!loaded && <Loader onComplete={() => setLoaded(true)} />}</AnimatePresence>
 
       <AnimatePresence>
         {loaded && (

@@ -1,6 +1,7 @@
 "use client";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FiUser, FiMapPin, FiMail, FiCode, FiPhone, FiBookOpen } from "react-icons/fi";
 import { personalInfo, education, languages } from "@/data/portfolio";
 import styles from "./About.module.scss";
@@ -47,7 +48,9 @@ export default function About() {
                 { icon: FiCode, label: "Languages", value: languages.join(" · ") },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className={styles.detailRow}>
-                  <span className={styles.detailIcon}><Icon size={14} /></span>
+                  <span className={styles.detailIcon}>
+                    <Icon size={14} />
+                  </span>
                   <span className={styles.detailLabel}>{label}</span>
                   <span className={styles.detailValue}>{value}</span>
                 </div>
@@ -55,8 +58,12 @@ export default function About() {
             </div>
 
             <div className={styles.actions}>
-              <a href="#contact" className="btn-primary"><span>Hire Me</span></a>
-              <a href="/resume.pdf" target="_blank" className="btn-outline">Download CV</a>
+              <a href="#contact" className="btn-primary">
+                <span>Hire Me</span>
+              </a>
+              <a href="/resume.pdf" target="_blank" className="btn-outline">
+                Download CV
+              </a>
             </div>
           </motion.div>
 
@@ -69,11 +76,7 @@ export default function About() {
             <div className={styles.avatarWrap}>
               <div className={styles.avatarRing} />
               <div className={styles.avatarInner}>
-                <img
-                  src="/vahe/me.png"
-                  alt="Vahe Mnatsakanyan"
-                  className={styles.avatarPhoto}
-                />
+                <Image src="/vahe/me.png" alt="Vahe Mnatsakanyan" className={styles.avatarPhoto} width={190} height={190} />
               </div>
               <div className={styles.avatarOrbit}>
                 {["⚛️", "🚀", "💻", "✨"].map((emoji, i) => (

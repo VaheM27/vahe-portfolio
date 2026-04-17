@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .footer {
   position: relative;
@@ -22,8 +22,13 @@
   letter-spacing: -0.02em;
 }
 
-.bracket { color: var(--accent); }
-.name { @include gradient-text(var(--grad-primary)); margin: 0 2px; }
+.bracket {
+  color: var(--accent);
+}
+.name {
+  @include gradient-text(var(--grad-primary));
+  margin: 0 2px;
+}
 
 .copy {
   font-size: 0.8rem;
@@ -31,7 +36,10 @@
   font-family: $font-mono;
 }
 
-.highlight { color: var(--accent); font-weight: 600; }
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
 
 .backTop {
   font-family: $font-mono;

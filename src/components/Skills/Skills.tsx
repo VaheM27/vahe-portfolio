@@ -90,9 +90,7 @@ export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const filtered =
-    activeCategory === "all"
-      ? skills
-      : skills.filter((s) => s.category === activeCategory);
+    activeCategory === "all" ? skills : skills.filter((s) => s.category === activeCategory);
 
   return (
     <section id="skills" ref={ref} className={styles.skills}>
@@ -105,8 +103,7 @@ export default function Skills() {
           <p className="section-label">Technical Skills</p>
           <h2 className="section-title">My Toolkit</h2>
           <p className="section-subtitle">
-            Technologies I work with to craft fast, scalable, and beautiful
-            interfaces.
+            Technologies I work with to craft fast, scalable, and beautiful interfaces.
           </p>
         </motion.div>
 
@@ -155,9 +152,7 @@ export default function Skills() {
                 </div>
                 <span className={styles.skillName}>
                   {skill.name}
-                  {skill.category === "ai" && (
-                    <span className={styles.aiTag}>AI</span>
-                  )}
+                  {skill.category === "ai" && <span className={styles.aiTag}>AI</span>}
                 </span>
               </motion.a>
             );

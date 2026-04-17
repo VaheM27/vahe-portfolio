@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .skills {
   position: relative;
@@ -65,8 +65,12 @@
     box-shadow: 0 6px 20px color-mix(in srgb, var(--hover-color, var(--accent)) 20%, transparent);
     transform: translateY(-4px);
 
-    .svgIcon { color: var(--hover-color, var(--accent)); }
-    .textIcon { filter: brightness(1.1); }
+    .svgIcon {
+      color: var(--hover-color, var(--accent));
+    }
+    .textIcon {
+      filter: brightness(1.1);
+    }
   }
 }
 
@@ -179,9 +183,19 @@
     box-shadow: var(--shadow-sm);
   }
 
-  &:nth-child(5n+1):hover  { background: var(--accent); }
-  &:nth-child(5n+2):hover  { background: var(--accent-alt); }
-  &:nth-child(5n+3):hover  { background: var(--accent-3); }
-  &:nth-child(5n+4):hover  { background: var(--accent-4); }
-  &:nth-child(5n+5):hover  { background: var(--accent-5); }
+  &:nth-child(5n + 1):hover {
+    background: var(--accent);
+  }
+  &:nth-child(5n + 2):hover {
+    background: var(--accent-alt);
+  }
+  &:nth-child(5n + 3):hover {
+    background: var(--accent-3);
+  }
+  &:nth-child(5n + 4):hover {
+    background: var(--accent-4);
+  }
+  &:nth-child(5n + 5):hover {
+    background: var(--accent-5);
+  }
 }

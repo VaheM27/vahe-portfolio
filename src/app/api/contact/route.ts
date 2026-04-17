@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const TO_EMAIL   = "vmnatsakanyan27@gmail.com";
+const TO_EMAIL = "vmnatsakanyan27@gmail.com";
 const FROM_EMAIL = "Portfolio <onboarding@resend.dev>"; // change after verifying your domain
 
 export async function POST(req: NextRequest) {
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: FROM_EMAIL,
-      to:   TO_EMAIL,
+      to: TO_EMAIL,
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
       html: `

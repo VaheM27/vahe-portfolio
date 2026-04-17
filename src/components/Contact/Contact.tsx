@@ -2,7 +2,17 @@
 import { useState, FormEvent, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMail, FiGithub, FiLinkedin, FiSend, FiMapPin, FiCheckCircle, FiXCircle, FiX, FiAlertCircle } from "react-icons/fi";
+import {
+  FiMail,
+  FiGithub,
+  FiLinkedin,
+  FiSend,
+  FiMapPin,
+  FiCheckCircle,
+  FiXCircle,
+  FiX,
+  FiAlertCircle,
+} from "react-icons/fi";
 import { personalInfo } from "@/data/portfolio";
 import styles from "./Contact.module.scss";
 
@@ -16,16 +26,16 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function validate(fields: Fields): Errors {
   const e: Errors = {};
-  if (!fields.name.trim())              e.name    = "Name is required.";
-  else if (fields.name.trim().length < 2) e.name  = "Name must be at least 2 characters.";
+  if (!fields.name.trim()) e.name = "Name is required.";
+  else if (fields.name.trim().length < 2) e.name = "Name must be at least 2 characters.";
 
-  if (!fields.email.trim())             e.email   = "Email is required.";
-  else if (!EMAIL_RE.test(fields.email)) e.email  = "Please enter a valid email address.";
+  if (!fields.email.trim()) e.email = "Email is required.";
+  else if (!EMAIL_RE.test(fields.email)) e.email = "Please enter a valid email address.";
 
-  if (!fields.subject.trim())           e.subject = "Subject is required.";
+  if (!fields.subject.trim()) e.subject = "Subject is required.";
   else if (fields.subject.trim().length < 3) e.subject = "Subject must be at least 3 characters.";
 
-  if (!fields.message.trim())           e.message = "Message is required.";
+  if (!fields.message.trim()) e.message = "Message is required.";
   else if (fields.message.trim().length < 10) e.message = "Message must be at least 10 characters.";
 
   return e;
@@ -70,12 +80,12 @@ function ToastNotification({ toast, onClose }: { toast: Toast; onClose: () => vo
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function Contact() {
-  const [form, setForm]       = useState<Fields>({ name: "", email: "", subject: "", message: "" });
-  const [errors, setErrors]   = useState<Errors>({});
+  const [form, setForm] = useState<Fields>({ name: "", email: "", subject: "", message: "" });
+  const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof Fields, boolean>>>({});
-  const [status, setStatus]   = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [toast, setToast]     = useState<Toast>(null);
-  const { ref, inView }       = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [toast, setToast] = useState<Toast>(null);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const touch = (field: keyof Fields) => {
     setTouched((t) => ({ ...t, [field]: true }));
@@ -114,7 +124,10 @@ export default function Contact() {
       setErrors({});
     } catch {
       setStatus("idle");
-      setToast({ type: "error", message: "Something went wrong. Please try again or email me directly." });
+      setToast({
+        type: "error",
+        message: "Something went wrong. Please try again or email me directly.",
+      });
     }
   };
 
@@ -158,7 +171,9 @@ export default function Contact() {
 
             <div className={styles.contactItems}>
               <div className={styles.contactItem}>
-                <div className={styles.contactIcon}><FiMail size={18} /></div>
+                <div className={styles.contactIcon}>
+                  <FiMail size={18} />
+                </div>
                 <div>
                   <span className={styles.contactLabel}>Email</span>
                   <a href={`mailto:${personalInfo.email}`} className={styles.contactValue}>
@@ -167,7 +182,9 @@ export default function Contact() {
                 </div>
               </div>
               <div className={styles.contactItem}>
-                <div className={styles.contactIcon}><FiMapPin size={18} /></div>
+                <div className={styles.contactIcon}>
+                  <FiMapPin size={18} />
+                </div>
                 <div>
                   <span className={styles.contactLabel}>Location</span>
                   <span className={styles.contactValue}>{personalInfo.location}</span>
@@ -177,11 +194,17 @@ export default function Contact() {
 
             <div className={styles.socialRow}>
               {[
-                { icon: FiGithub,   href: personalInfo.social.github,   label: "GitHub" },
-                { icon: FiLinkedin, href: personalInfo.social.linkedin,  label: "LinkedIn" },
+                { icon: FiGithub, href: personalInfo.social.github, label: "GitHub" },
+                { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
               ].map(({ icon: Icon, href, label }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                  className={styles.socialBtn} aria-label={label}>
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialBtn}
+                  aria-label={label}
+                >
                   <Icon size={18} />
                   <span>{label}</span>
                 </a>
@@ -246,7 +269,9 @@ export default function Contact() {
                   />
                   <div className={styles.fieldFooter}>
                     <FieldError msg={touched.message ? errors.message : undefined} />
-                    <span className={`${styles.charCount} ${form.message.length < 10 ? styles.charWarn : ""}`}>
+                    <span
+                      className={`${styles.charCount} ${form.message.length < 10 ? styles.charWarn : ""}`}
+                    >
                       {form.message.length} / 10
                     </span>
                   </div>
@@ -258,9 +283,11 @@ export default function Contact() {
                   disabled={status === "sending"}
                 >
                   <span>{status === "sending" ? "Sending..." : "Send Message"}</span>
-                  {status === "sending"
-                    ? <span className={styles.spinner} />
-                    : <FiSend size={16} />}
+                  {status === "sending" ? (
+                    <span className={styles.spinner} />
+                  ) : (
+                    <FiSend size={16} />
+                  )}
                 </button>
               </>
             )}
