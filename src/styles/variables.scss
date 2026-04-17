@@ -1,0 +1,99 @@
+// ─── Multi-Green Light Palette ────────────────────────────────────────────────
+$white:      #ffffff;
+$bg-primary: #f8fffe;
+$bg-secondary: #f0fdf6;
+$bg-surface: #e8faf0;
+$bg-card:    rgba(255, 255, 255, 0.92);
+
+// Green family — multiple distinct shades
+$emerald:     #059669;   // deep emerald
+$emerald-lt:  #34d399;   // light emerald
+$green:       #16a34a;   // mid green
+$green-lt:    #4ade80;   // light green
+$teal:        #0d9488;   // teal-green
+$teal-lt:     #5eead4;   // light teal
+$lime:        #65a30d;   // lime-green
+$lime-lt:     #a3e635;   // light lime
+$mint:        #10b981;   // mint
+$forest:      #15803d;   // deep forest
+$sage:        #86efac;   // soft sage
+
+// Text
+$text-primary:   #0f172a;
+$text-secondary: #334155;
+$text-muted:     #64748b;
+$text-light:     #94a3b8;
+
+// Borders
+$border-subtle: rgba(5, 150, 105, 0.1);
+$border-medium: rgba(5, 150, 105, 0.22);
+$border-strong: rgba(5, 150, 105, 0.4);
+
+// Shadows — tinted with each green
+$shadow-sm:  0 2px 8px rgba(5, 150, 105, 0.08);
+$shadow-md:  0 8px 30px rgba(5, 150, 105, 0.12);
+$shadow-lg:  0 20px 60px rgba(5, 150, 105, 0.15);
+$shadow-xl:  0 30px 80px rgba(5, 150, 105, 0.18);
+
+// ─── Gradients ────────────────────────────────────────────────────────────────
+$grad-emerald-teal: linear-gradient(135deg, #{$emerald} 0%, #{$teal} 100%);
+$grad-green-lime:   linear-gradient(135deg, #{$green} 0%, #{$lime} 100%);
+$grad-mint-emerald: linear-gradient(135deg, #{$emerald-lt} 0%, #{$emerald} 100%);
+$grad-teal-lime:    linear-gradient(135deg, #{$teal} 0%, #{$lime} 100%);
+$grad-hero:         linear-gradient(135deg, #{$emerald} 0%, #{$teal} 40%, #{$lime} 100%);
+
+// ─── Typography ──────────────────────────────────────────────────────────────
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+// ─── Spacing ─────────────────────────────────────────────────────────────────
+$section-padding: clamp(80px, 10vw, 130px) 0;
+
+// ─── Breakpoints ─────────────────────────────────────────────────────────────
+$mobile:  480px;
+$tablet:  768px;
+$desktop: 1024px;
+$wide:    1280px;
+
+@mixin mobile  { @media (max-width: #{$mobile})  { @content; } }
+@mixin tablet  { @media (max-width: #{$tablet})  { @content; } }
+@mixin desktop { @media (max-width: #{$desktop}) { @content; } }
+
+// ─── Mixins ──────────────────────────────────────────────────────────────────
+@mixin card {
+  background: $white;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+@mixin card-hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+}
+
+@mixin glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid $border-subtle;
+}
+
+@mixin gradient-text($grad: $grad-hero) {
+  background: $grad;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  @include gradient-text(var(--grad-hero));
+}

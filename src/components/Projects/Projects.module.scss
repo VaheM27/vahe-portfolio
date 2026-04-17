@@ -1,0 +1,422 @@
+@use '../../styles/variables' as *;
+
+.projects {
+  position: relative;
+  z-index: 1;
+  background: $bg-secondary;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
+  }
+}
+
+// ─── Featured Cards ──────────────────────────────────────────────────────────
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  margin-top: 64px;
+}
+
+.featuredCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+
+  @include desktop { grid-template-columns: 1fr; gap: 36px; }
+
+  &.reverse {
+    .cardVisual { order: 2; }
+    .cardInfo   { order: 1; }
+    @include desktop {
+      .cardVisual, .cardInfo { order: unset; }
+    }
+  }
+}
+
+.cardVisual { position: relative; }
+
+.projectImg {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: $bg-secondary;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--accent-border, var(--border-medium));
+    box-shadow: var(--shadow-xl), 0 0 0 1px var(--accent-border, var(--border-medium));
+  }
+}
+
+// ─── Browser chrome ───────────────────────────────────────────────────────────
+.browserBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: $bg-secondary;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.browserDots {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+
+  span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    &:nth-child(1) { background: #ff5f57; }
+    &:nth-child(2) { background: #ffbd2e; }
+    &:nth-child(3) { background: #28c840; }
+  }
+}
+
+.browserUrl {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: $white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  padding: 3px 10px;
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  color: $text-muted;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.lock { font-size: 0.65rem; flex-shrink: 0; }
+
+.browserOpen {
+  color: $text-muted;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 4px;
+  transition: all 0.2s;
+
+  &:hover { color: var(--accent); background: rgba(var(--accent-rgb), 0.08); }
+}
+
+// ─── Live preview ────────────────────────────────────────────────────────────
+.iframeWrap {
+  position: relative;
+  width: 100%;
+  padding-top: 62.5%;
+  overflow: hidden;
+  background: $bg-surface;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+}
+
+.iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: top left;
+  border: none;
+  pointer-events: none;
+}
+
+.screenshotImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.5s ease;
+
+  .projectImg:hover & {
+    transform: scale(1.04);
+  }
+}
+
+.previewFallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $bg-surface, $bg-secondary);
+}
+
+.fallbackContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.fallbackTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.fallbackUrl {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $text-muted;
+}
+
+.cardGlow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardLabel {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.featuredCard:nth-child(2) .cardLabel { color: var(--accent-alt); }
+
+.cardTitle {
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: $text-primary;
+  line-height: 1.2;
+}
+
+.cardDesc {
+  background: $white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+
+  p {
+    font-size: 0.925rem;
+    color: $text-secondary;
+    line-height: 1.8;
+  }
+}
+
+.cardTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.techTag {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: 100px;
+  border: 1px solid var(--border-subtle);
+  background: $white;
+  color: $text-secondary;
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--border-medium);
+    background: rgba(var(--accent-rgb), 0.05);
+  }
+}
+
+.cardLinks {
+  display: flex;
+  gap: 18px;
+}
+
+.cardLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $text-secondary;
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+}
+
+// ─── Other Projects ──────────────────────────────────────────────────────────
+.otherTitle {
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 28px;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  color: $text-muted;
+  letter-spacing: 0.06em;
+}
+
+.otherGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.otherCard {
+  background: $white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:nth-child(5n+1)::before { background: var(--grad-primary); }
+  &:nth-child(5n+2)::before { background: var(--grad-alt); }
+  &:nth-child(5n+3)::before { background: var(--grad-teal-lime); }
+  &:nth-child(5n+4)::before { background: var(--grad-mint-em); }
+  &:nth-child(5n+5)::before { background: linear-gradient(90deg, var(--accent-4), var(--accent)); }
+
+  &:hover {
+    @include card-hover;
+    transform: translateY(-6px);
+
+    &::before { opacity: 1; }
+    .folderIcon { color: var(--accent); }
+  }
+}
+
+.otherCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.folderIcon {
+  color: var(--border-strong);
+  transition: color 0.3s;
+}
+
+.otherLiveBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  border: 1px solid var(--border-subtle);
+  background: $bg-secondary;
+  color: $text-muted;
+  @include flex-center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    color: $white;
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+}
+
+.otherCardTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.01em;
+}
+
+.otherCardDesc {
+  font-size: 0.875rem;
+  color: $text-secondary;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.otherCardTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+
+  span {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    color: $text-muted;
+    background: $bg-surface;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+}
+
+.viewMore {
+  margin-top: 52px;
+  text-align: center;
+}
+
+.viewMoreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 12px 26px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-strong);
+  background: $white;
+  transition: all 0.25s;
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    background: var(--accent);
+    color: $white;
+    border-color: var(--accent);
+    gap: 14px;
+    box-shadow: var(--shadow-md);
+  }
+}

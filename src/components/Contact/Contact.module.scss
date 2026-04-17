@@ -1,0 +1,342 @@
+@use '../../styles/variables' as *;
+
+.contact {
+  position: relative;
+  z-index: 1;
+  background: $bg-secondary;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+  margin-top: 56px;
+  align-items: start;
+
+  @include desktop { gap: 44px; }
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.callout {
+  font-size: 1.05rem;
+  color: $text-secondary;
+  line-height: 1.8;
+}
+
+.contactItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contactIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  @include flex-center;
+  flex-shrink: 0;
+  border: 1px solid var(--border-medium);
+}
+
+.contactItems .contactItem:nth-child(1) .contactIcon { background: rgba(var(--accent-rgb), 0.1); color: var(--accent); }
+.contactItems .contactItem:nth-child(2) .contactIcon { background: rgba(var(--accent-alt-rgb), 0.1); color: var(--accent-alt); }
+
+.contactLabel {
+  display: block;
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: $text-muted;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.contactValue {
+  font-size: 0.9rem;
+  color: $text-primary;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s;
+
+  &:hover { color: var(--accent); }
+}
+
+.socialRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 9px;
+  border: 1px solid var(--border-subtle);
+  background: $white;
+  color: $text-secondary;
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    color: $white;
+    background: var(--grad-primary);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// ─── Form ─────────────────────────────────────────────────────────────────────
+.form {
+  background: $white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow-md);
+
+  @include mobile { padding: 24px; }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  color: $text-muted;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.input {
+  background: $bg-secondary;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 9px;
+  padding: 12px 15px;
+  color: $text-primary;
+  font-family: $font-sans;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+
+  &::placeholder { color: $text-light; }
+
+  &:focus {
+    border-color: var(--accent);
+    background: $white;
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+  }
+
+  &.inputError {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.03);
+    box-shadow: none;
+    &:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
+  }
+
+  &.inputValid {
+    border-color: var(--accent);
+    &:focus { box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1); }
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.65;
+}
+
+.fieldFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 18px;
+}
+
+.fieldError {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: #ef4444;
+  font-family: $font-mono;
+}
+
+.charCount {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: $text-light;
+  margin-left: auto;
+  flex-shrink: 0;
+
+  &.charWarn { color: #f59e0b; }
+}
+
+.submitBtn {
+  align-self: flex-start;
+  margin-top: 4px;
+
+  &:disabled {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.sendAnother {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  padding: 10px 22px;
+}
+
+.successMsg {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  h3 { font-size: 1.4rem; font-weight: 800; @include gradient-text(var(--grad-primary)); }
+  p  { color: $text-secondary; font-size: 0.95rem; }
+}
+
+.successIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  @include flex-center;
+  font-size: 1.6rem;
+  color: $white;
+  box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.3);
+}
+
+// ─── Toast ────────────────────────────────────────────────────────────────────
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px 18px;
+  border-radius: 12px;
+  min-width: 300px;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  overflow: hidden;
+  border: 1px solid transparent;
+
+  &.success {
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.12), rgba(var(--accent-rgb), 0.06));
+    border-color: rgba(var(--accent-rgb), 0.25);
+    color: var(--accent);
+
+    .toastIcon { color: var(--accent); }
+    .toastBar  { background: var(--grad-primary); }
+  }
+
+  &.error {
+    background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(239,68,68,0.05));
+    border-color: rgba(239,68,68,0.25);
+    color: #ef4444;
+
+    .toastIcon { color: #ef4444; }
+    .toastBar  { background: linear-gradient(90deg, #ef4444, #f87171); }
+  }
+}
+
+.toastIcon {
+  flex-shrink: 0;
+  display: flex;
+}
+
+.toastMsg {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $text-primary;
+  line-height: 1.4;
+}
+
+.toastClose {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: $text-muted;
+  transition: all 0.15s;
+
+  &:hover {
+    background: rgba(0,0,0,0.06);
+    color: $text-primary;
+  }
+}
+
+.toastBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  transform-origin: left;
+}

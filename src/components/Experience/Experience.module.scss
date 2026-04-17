@@ -1,0 +1,200 @@
+@use '../../styles/variables' as *;
+
+.experience {
+  position: relative;
+  z-index: 1;
+  background: $bg-primary;
+}
+
+.panel {
+  margin-top: 56px;
+  display: flex;
+  background: $white;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+
+  @include tablet { flex-direction: column; }
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  border-right: 1px solid var(--border-subtle);
+  background: $bg-secondary;
+
+  @include tablet {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    &::-webkit-scrollbar { display: none; }
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  font-family: $font-mono;
+  font-size: 0.82rem;
+  color: $text-muted;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  text-align: left;
+
+  &:last-child { border-bottom: none; }
+
+  @include tablet {
+    border-bottom: none;
+    border-right: 1px solid var(--border-subtle);
+    &:last-child { border-right: none; }
+  }
+
+  &:hover {
+    color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.05);
+  }
+
+  &.activeTab {
+    color: var(--accent);
+    background: $white;
+    font-weight: 600;
+
+    .tabIndicator {
+      background: var(--grad-primary);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.3);
+    }
+  }
+}
+
+.tabIndicator {
+  width: 3px;
+  align-self: stretch;
+  border-radius: 2px;
+  background: transparent;
+  transition: background 0.2s;
+
+  @include tablet {
+    width: 100%;
+    height: 3px;
+    align-self: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+  }
+}
+
+.tabText { flex: 1; }
+
+.content {
+  flex: 1;
+  padding: 40px;
+
+  @include mobile { padding: 24px; }
+}
+
+.jobHeader { margin-bottom: 18px; }
+
+.role {
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.atSign { color: $text-muted; }
+
+.company {
+  @include gradient-text(var(--grad-primary));
+  font-weight: 800;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  color: $text-muted;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    svg { color: var(--accent-alt); }
+  }
+}
+
+.typeBadge {
+  background: rgba(var(--accent-rgb), 0.08);
+  border: 1px solid var(--border-medium);
+  border-radius: 100px;
+  padding: 2px 10px;
+  color: var(--accent) !important;
+  font-size: 0.7rem !important;
+}
+
+.description {
+  font-size: 0.925rem;
+  color: $text-secondary;
+  line-height: 1.8;
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.responsibilities {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.responsibilities li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: $text-primary;
+  line-height: 1.65;
+}
+
+.bullet {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $text-muted;
+  background: $bg-secondary;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-subtle);
+
+  svg { color: var(--accent-alt); }
+}

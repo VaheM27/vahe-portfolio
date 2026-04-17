@@ -1,0 +1,65 @@
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.2s, width 0.2s ease, height 0.2s ease, background 0.2s;
+  will-change: transform;
+
+  &.visible { opacity: 1; }
+
+  &.hoveringDot {
+    width: 12px;
+    height: 12px;
+    background: var(--accent-alt);
+  }
+
+  &.clicking {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-lt);
+  }
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  pointer-events: none;
+  z-index: 99998;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    width 0.25s ease,
+    height 0.25s ease,
+    border-color 0.2s,
+    background 0.2s;
+  will-change: transform;
+
+  &.visible { opacity: 0.55; }
+
+  &.hoveringRing {
+    width: 52px;
+    height: 52px;
+    opacity: 0.25;
+    border-color: var(--accent-alt);
+    background: rgba(var(--accent-rgb), 0.06);
+  }
+
+  &.clickingRing {
+    width: 28px;
+    height: 28px;
+    opacity: 0.7;
+    border-color: var(--accent-lt);
+  }
+}

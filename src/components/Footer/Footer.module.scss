@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+
+.footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border-subtle);
+  padding: 30px 0;
+  background: $white;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.bracket { color: var(--accent); }
+.name { @include gradient-text(var(--grad-primary)); margin: 0 2px; }
+
+.copy {
+  font-size: 0.8rem;
+  color: $text-muted;
+  font-family: $font-mono;
+}
+
+.highlight { color: var(--accent); font-weight: 600; }
+
+.backTop {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  color: $text-muted;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: $bg-secondary;
+  transition: all 0.2s;
+
+  &:hover {
+    color: $white;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+}
