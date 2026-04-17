@@ -27,6 +27,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Vahe Mnatsakanyan", url: BASE_URL }],
   creator: "Vahe Mnatsakanyan",
+  icons: {
+    icon: "/og-image.png",
+    apple: "/og-image.png",
+  },
   openGraph: {
     type: "website",
     url: BASE_URL,
