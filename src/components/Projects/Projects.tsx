@@ -48,7 +48,7 @@ function SitePreview({
           scrolling="no"
           frameBorder="0"
           onError={() => setFailed(true)}
-          sandbox="allow-same-origin allow-forms"
+          sandbox="allow-scripts allow-forms allow-same-origin"
           className={styles.iframe}
         />
       )}
