@@ -10,11 +10,15 @@
   width: max-content;
   transition: top 0.3s ease;
 
+  @media (max-width: 960px) {
+    width: calc(100vw - 24px);
+  }
+
   &.scrolled {
     top: 12px;
 
     .inner {
-      background: rgba(255, 255, 255, 0.94);
+      background: var(--glass-nav-scrolled);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-color: var(--border-medium);
@@ -29,7 +33,11 @@
   justify-content: space-between;
   gap: 4px;
   padding: 7px 10px 7px 16px;
-  background: rgba(255, 255, 255, 0.75);
+
+  @media (max-width: 960px) {
+    padding: 7px 14px;
+  }
+  background: var(--glass-nav);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
@@ -73,7 +81,7 @@
 .link {
   font-family: $font-mono;
   font-size: 0.73rem;
-  color: $text-secondary;
+  color: var(--text-secondary);
   padding: 6px 10px;
   border-radius: 100px;
   transition: all 0.2s ease;
@@ -102,7 +110,7 @@
   font-weight: 600;
   padding: 6px 16px;
   border-radius: 100px;
-  color: $white;
+  color: white;
   background: var(--grad-primary);
   border: none;
   transition: all 0.2s;
@@ -163,7 +171,7 @@
   align-items: center;
   gap: 4px;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.97);
+  background: var(--glass-mobile);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
@@ -175,7 +183,7 @@
 .mobileLink {
   font-family: $font-mono;
   font-size: 0.85rem;
-  color: $text-secondary;
+  color: var(--text-secondary);
   padding: 9px 24px;
   width: 100%;
   text-align: center;

@@ -3,7 +3,7 @@
 .about {
   position: relative;
   z-index: 1;
-  background: $bg-secondary;
+  background: var(--bg-secondary);
 
   &::before {
     content: "";
@@ -40,14 +40,14 @@
 
 .lead {
   font-size: 1.05rem;
-  color: $text-primary;
+  color: var(--text-primary);
   line-height: 1.8;
   font-weight: 450;
 }
 
 .body {
   font-size: 0.95rem;
-  color: $text-secondary;
+  color: var(--text-secondary);
   line-height: 1.85;
 }
 
@@ -55,7 +55,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  background: $white;
+  background: var(--color-white);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   overflow: hidden;
@@ -75,7 +75,7 @@
     border-bottom: none;
   }
   &:hover {
-    background: $bg-secondary;
+    background: var(--bg-secondary);
   }
 }
 
@@ -90,7 +90,7 @@
 }
 
 .detailLabel {
-  color: $text-muted;
+  color: var(--text-muted);
   font-family: $font-mono;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -100,7 +100,7 @@
 
 .detailValue {
   font-size: 0.875rem;
-  color: $text-primary;
+  color: var(--text-primary);
   font-weight: 450;
 }
 
@@ -127,6 +127,11 @@
   width: 260px;
   height: 260px;
   @include flex-center;
+
+  @include mobile {
+    width: 220px;
+    height: 220px;
+  }
 }
 
 .avatarRing {
@@ -163,7 +168,7 @@
   width: 190px;
   height: 190px;
   border-radius: 50%;
-  background: linear-gradient(135deg, $bg-surface, $white);
+  background: linear-gradient(135deg, var(--bg-surface), var(--color-white));
   border: 2px solid var(--border-medium);
   @include flex-center;
   box-shadow:
@@ -218,7 +223,7 @@
 }
 
 .statCard {
-  background: $white;
+  background: var(--color-white);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 20px 16px;
@@ -280,7 +285,7 @@
 
 .statLabel {
   font-size: 0.72rem;
-  color: $text-muted;
+  color: var(--text-muted);
   font-family: $font-mono;
   letter-spacing: 0.05em;
 }

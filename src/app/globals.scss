@@ -36,6 +36,40 @@
   --grad-alt: linear-gradient(135deg, var(--accent-3) 0%, var(--accent-4) 100%);
   --grad-mint-em: linear-gradient(135deg, var(--accent-lt) 0%, var(--accent) 100%);
   --grad-teal-lime: linear-gradient(135deg, var(--accent-alt) 0%, var(--accent-4) 100%);
+
+  /* Semantic background & text — overridden in dark mode */
+  --bg-primary:   #f8fffe;
+  --bg-secondary: #f0fdf6;
+  --bg-surface:   #e8faf0;
+  --color-white:  #ffffff;
+  --text-primary:   #0f172a;
+  --text-secondary: #334155;
+  --text-muted:     #64748b;
+  --text-light:     #94a3b8;
+
+  /* Nav glass */
+  --glass-nav:          rgba(255, 255, 255, 0.75);
+  --glass-nav-scrolled: rgba(255, 255, 255, 0.94);
+  --glass-mobile:       rgba(255, 255, 255, 0.97);
+}
+
+/* ─── Dark mode overrides ──────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-primary:   #0c111d;
+  --bg-secondary: #111827;
+  --bg-surface:   #1a2236;
+  --color-white:  #111827;
+  --text-primary:   #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted:     #94a3b8;
+  --text-light:     #4b5563;
+
+  --glass-nav:          rgba(12, 17, 29, 0.85);
+  --glass-nav-scrolled: rgba(12, 17, 29, 0.96);
+  --glass-mobile:       rgba(17, 24, 39, 0.98);
+
+  --border-subtle: rgba(var(--accent-rgb), 0.14);
+  --border-medium: rgba(var(--accent-rgb), 0.28);
 }
 
 *,
@@ -53,8 +87,8 @@ html {
 
 body {
   font-family: $font-sans;
-  background-color: $bg-primary;
-  color: $text-primary;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

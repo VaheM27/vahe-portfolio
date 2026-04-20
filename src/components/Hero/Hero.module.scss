@@ -7,7 +7,7 @@
   position: relative;
   padding-top: 100px;
   overflow: hidden;
-  background: $bg-primary;
+  background: var(--bg-primary);
 
   &::before {
     content: "";
@@ -155,7 +155,7 @@
   height: 36px;
   border-radius: 8px;
   border: 1px solid var(--border-medium);
-  background: $white;
+  background: var(--color-white);
   color: $text-muted;
   @include flex-center;
   transition: all 0.2s ease;

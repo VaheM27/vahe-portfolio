@@ -3,13 +3,13 @@
 .experience {
   position: relative;
   z-index: 1;
-  background: $bg-primary;
+  background: var(--bg-primary);
 }
 
 .panel {
   margin-top: 56px;
   display: flex;
-  background: $white;
+  background: var(--color-white);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   overflow: hidden;
@@ -25,7 +25,7 @@
   flex-direction: column;
   min-width: 220px;
   border-right: 1px solid var(--border-subtle);
-  background: $bg-secondary;
+  background: var(--bg-secondary);
 
   @include tablet {
     flex-direction: row;
@@ -45,7 +45,7 @@
   padding: 16px 22px;
   font-family: $font-mono;
   font-size: 0.82rem;
-  color: $text-muted;
+  color: var(--text-muted);
   background: transparent;
   cursor: pointer;
   transition: all 0.2s;
@@ -73,7 +73,7 @@
 
   &.activeTab {
     color: var(--accent);
-    background: $white;
+    background: var(--color-white);
     font-weight: 600;
 
     .tabIndicator {
@@ -121,14 +121,14 @@
 .role {
   font-size: clamp(1.1rem, 2.4vw, 1.35rem);
   font-weight: 700;
-  color: $text-primary;
+  color: var(--text-primary);
   letter-spacing: -0.01em;
   line-height: 1.4;
   margin-bottom: 10px;
 }
 
 .atSign {
-  color: $text-muted;
+  color: var(--text-muted);
 }
 
 .company {
@@ -142,7 +142,7 @@
   flex-wrap: wrap;
   font-family: $font-mono;
   font-size: 0.78rem;
-  color: $text-muted;
+  color: var(--text-muted);
 
   span {
     display: flex;
@@ -166,7 +166,7 @@
 
 .description {
   font-size: 0.925rem;
-  color: $text-secondary;
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 22px;
   padding-bottom: 22px;
@@ -186,7 +186,7 @@
   align-items: flex-start;
   gap: 10px;
   font-size: 0.9rem;
-  color: $text-primary;
+  color: var(--text-primary);
   line-height: 1.65;
 }
 
@@ -208,8 +208,8 @@
   gap: 5px;
   font-family: $font-mono;
   font-size: 0.72rem;
-  color: $text-muted;
-  background: $bg-secondary;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
   padding: 4px 10px;
   border-radius: 5px;
   border: 1px solid var(--border-subtle);

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import DarkModeToggle from "@/components/DarkModeToggle/DarkModeToggle";
 import styles from "./Navbar.module.scss";
 
 const links = [
@@ -68,6 +69,8 @@ export default function Navbar() {
             Resume
           </motion.a>
         </nav>
+
+        <DarkModeToggle />
 
         <button
           className={`${styles.menuBtn} ${menuOpen ? styles.open : ""}`}

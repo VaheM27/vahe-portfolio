@@ -5,7 +5,7 @@
   z-index: 1;
   border-top: 1px solid var(--border-subtle);
   padding: 30px 0;
-  background: $white;
+  background: var(--color-white);
 }
 
 .inner {
@@ -32,7 +32,7 @@
 
 .copy {
   font-size: 0.8rem;
-  color: $text-muted;
+  color: var(--text-muted);
   font-family: $font-mono;
 }
 
@@ -44,15 +44,15 @@
 .backTop {
   font-family: $font-mono;
   font-size: 0.75rem;
-  color: $text-muted;
+  color: var(--text-muted);
   padding: 6px 12px;
   border-radius: 6px;
   border: 1px solid var(--border-subtle);
-  background: $bg-secondary;
+  background: var(--bg-secondary);
   transition: all 0.2s;
 
   &:hover {
-    color: $white;
+    color: white;
     background: var(--accent);
     border-color: var(--accent);
   }

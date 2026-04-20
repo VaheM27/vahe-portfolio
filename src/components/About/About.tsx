@@ -76,7 +76,13 @@ export default function About() {
             <div className={styles.avatarWrap}>
               <div className={styles.avatarRing} />
               <div className={styles.avatarInner}>
-                <Image src="/vahe/me.png" alt="Vahe Mnatsakanyan" className={styles.avatarPhoto} width={190} height={190} />
+                <Image
+                  src="/vahe/me.png"
+                  alt="Vahe Mnatsakanyan"
+                  className={styles.avatarPhoto}
+                  width={190}
+                  height={190}
+                />
               </div>
               <div className={styles.avatarOrbit}>
                 {["⚛️", "🚀", "💻", "✨"].map((emoji, i) => (

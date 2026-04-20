@@ -1,0 +1,27 @@
+@use "../../styles/variables" as *;
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-medium);
+  background: var(--glass-nav);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--border-strong);
+    background: rgba(var(--accent-rgb), 0.06);
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

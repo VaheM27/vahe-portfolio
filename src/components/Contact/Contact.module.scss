@@ -3,7 +3,7 @@
 .contact {
   position: relative;
   z-index: 1;
-  background: $bg-secondary;
+  background: var(--bg-secondary);
 
   &::before {
     content: "";
@@ -40,7 +40,7 @@
 
 .callout {
   font-size: 1.05rem;
-  color: $text-secondary;
+  color: var(--text-secondary);
   line-height: 1.8;
 }
 
@@ -78,7 +78,7 @@
   display: block;
   font-family: $font-mono;
   font-size: 0.68rem;
-  color: $text-muted;
+  color: var(--text-muted);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 2px;
@@ -86,7 +86,7 @@
 
 .contactValue {
   font-size: 0.9rem;
-  color: $text-primary;
+  color: var(--text-primary);
   font-weight: 500;
   display: block;
   transition: color 0.2s;
@@ -109,15 +109,15 @@
   padding: 9px 16px;
   border-radius: 9px;
   border: 1px solid var(--border-subtle);
-  background: $white;
-  color: $text-secondary;
+  background: var(--color-white);
+  color: var(--text-secondary);
   font-size: 0.84rem;
   font-weight: 500;
   transition: all 0.2s;
   box-shadow: var(--shadow-sm);
 
   &:hover {
-    color: $white;
+    color: white;
     background: var(--grad-primary);
     border-color: transparent;
     transform: translateY(-2px);
@@ -127,7 +127,7 @@
 
 // ─── Form ─────────────────────────────────────────────────────────────────────
 .form {
-  background: $white;
+  background: var(--color-white);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   padding: 40px;
@@ -159,18 +159,18 @@
 .label {
   font-family: $font-mono;
   font-size: 0.7rem;
-  color: $text-muted;
+  color: var(--text-muted);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 .input {
-  background: $bg-secondary;
+  background: var(--bg-secondary);
   border: 1.5px solid var(--border-subtle);
   border-radius: 9px;
   padding: 12px 15px;
-  color: $text-primary;
+  color: var(--text-primary);
   font-family: $font-sans;
   font-size: 0.9rem;
   outline: none;
@@ -178,12 +178,12 @@
   width: 100%;
 
   &::placeholder {
-    color: $text-light;
+    color: var(--text-light);
   }
 
   &:focus {
     border-color: var(--accent);
-    background: $white;
+    background: var(--color-white);
     box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
   }
 
@@ -229,7 +229,7 @@
 .charCount {
   font-family: $font-mono;
   font-size: 0.68rem;
-  color: $text-light;
+  color: var(--text-light);
   margin-left: auto;
   flex-shrink: 0;
 
@@ -284,7 +284,7 @@
     @include gradient-text(var(--grad-primary));
   }
   p {
-    color: $text-secondary;
+    color: var(--text-secondary);
     font-size: 0.95rem;
   }
 }
@@ -296,7 +296,7 @@
   background: var(--grad-primary);
   @include flex-center;
   font-size: 1.6rem;
-  color: $white;
+  color: white;
   box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.3);
 }
 
@@ -316,6 +316,13 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
   overflow: hidden;
   border: 1px solid transparent;
+
+  @include mobile {
+    right: 12px;
+    left: 12px;
+    min-width: 0;
+    max-width: none;
+  }
 
   &.success {
     background: linear-gradient(
@@ -357,7 +364,7 @@
   flex: 1;
   font-size: 0.85rem;
   font-weight: 500;
-  color: $text-primary;
+  color: var(--text-primary);
   line-height: 1.4;
 }
 
@@ -369,12 +376,12 @@
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  color: $text-muted;
+  color: var(--text-muted);
   transition: all 0.15s;
 
   &:hover {
     background: rgba(0, 0, 0, 0.06);
-    color: $text-primary;
+    color: var(--text-primary);
   }
 }
 

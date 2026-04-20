@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import Cursor from "@/components/Cursor/Cursor";
+import ScrollProgress from "@/components/ScrollProgress/ScrollProgress";
 import "./globals.scss";
 
 const BASE_URL = "https://vahe-portfolio-psi.vercel.app";
@@ -110,8 +111,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <ScrollProgress />
         <Cursor />
-        <Analytics/>
+        <Analytics />
         {children}
       </body>
     </html>
