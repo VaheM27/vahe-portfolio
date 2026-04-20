@@ -27,7 +27,7 @@
     gap: 50px;
   }
   @include tablet {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 50px;
   }
 }
@@ -116,6 +116,7 @@
   flex-direction: column;
   align-items: center;
   gap: 36px;
+  min-width: 0;
 
   @include tablet {
     order: -1;
@@ -175,6 +176,11 @@
     var(--shadow-md),
     inset 0 2px 8px rgba(var(--accent-rgb), 0.06);
   overflow: hidden;
+
+  @include mobile {
+    width: 148px;
+    height: 148px;
+  }
 }
 
 .avatarPhoto {
@@ -203,6 +209,11 @@
       animation-delay: calc(#{$i} * -3.5s);
     }
   }
+
+  @include mobile {
+    font-size: 0.9rem;
+    animation-name: orbit-sm;
+  }
 }
 
 @keyframes orbit {
@@ -211,6 +222,15 @@
   }
   to {
     transform: rotate(360deg) translateX(130px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-sm {
+  from {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
   }
 }
 
@@ -231,6 +251,10 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+
+  @include mobile {
+    padding: 14px 10px;
+  }
   transition: all 0.3s ease;
   box-shadow: var(--shadow-sm);
   position: relative;
@@ -268,6 +292,10 @@
   font-size: 2rem;
   font-weight: 800;
   line-height: 1;
+
+  @include mobile {
+    font-size: 1.5rem;
+  }
 }
 
 .statCard:nth-child(1) .statValue {
