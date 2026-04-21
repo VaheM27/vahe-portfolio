@@ -56,12 +56,9 @@
 }
 
 .logoImg {
-  height: 34px;
-  width: 34px;
-  object-fit: cover;
-  // The OG image is 600×315 — centre-crop to the circular mark
-  object-position: center center;
-  border-radius: 50%;
+  height: 36px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav {
