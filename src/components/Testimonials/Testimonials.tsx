@@ -14,15 +14,23 @@ export interface Testimonial {
   linkedinUrl?: string;
 }
 
-// ─── Add your LinkedIn recommendations here ───────────────────────────────────
+// ─── LinkedIn recommendations ─────────────────────────────────────────────────
 export const testimonials: Testimonial[] = [
   {
-    name: "Placeholder Name",
-    title: "Senior Engineer",
-    company: "Company",
+    name: "Lilit Aydinyan",
+    title: "IT Project Manager | Scrum Master | PMEC™",
+    company: "SmartCode",
     relationship: "Managed Vahe directly",
-    text: "Paste LinkedIn recommendation text here.",
-    linkedinUrl: "https://linkedin.com",
+    text: "Vahe is one of the best among all the people I have ever worked with. As I remember, Vahe is a very productive person, is hardworking, broad-minded and forward thinking individual. Intelligent, ambitious, energetic and proactive perfectionist. Desire for proficiency and education makes Vahe a valuable asset to the team. His focus keeps everything moving smoothly, he makes sure all the deadlines are met, and makes sure that whatever project he is working on meets the highest standards. It is an honor for me to recommend and endorse him.",
+    linkedinUrl: "https://www.linkedin.com/in/vahe-mnatsakanyan-665157202/details/recommendations/",
+  },
+  {
+    name: "Mari Mirzoyan",
+    title: "Product Designer",
+    company: "Homebuddy",
+    relationship: "Worked on the same team",
+    text: "Vahe has been working as a Software developer within a team where I was involved too. Having worked with him on many projects, I must say he is really good at development. His work is always outstanding, and he always goes the extra mile to ensure the company standards and requirements. He is a highly-skilled, experienced, and helpful professional with a positive attitude. Working with Vahe has been a great experience for me as I learned many hard and soft skills from him.",
+    linkedinUrl: "https://www.linkedin.com/in/vahe-mnatsakanyan-665157202/details/recommendations/",
   },
 ];
 
