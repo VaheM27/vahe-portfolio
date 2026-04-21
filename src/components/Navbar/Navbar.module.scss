@@ -201,3 +201,38 @@
   width: 100%;
   text-align: center;
 }
+
+.cmdBtn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: var(--border-medium);
+    color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.06);
+  }
+
+  @media (max-width: 540px) {
+    display: none;
+  }
+}
+
+.cmdKey {
+  font-size: 0.8rem;
+}
+
+.cmdK {
+  font-family: $font-mono;
+  font-weight: 700;
+  font-size: 0.7rem;
+}

@@ -1,0 +1,79 @@
+@use "../../styles/variables" as *;
+
+.section {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-primary);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
+  }
+}
+
+.calendarWrap {
+  margin-top: 48px;
+  background: var(--color-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+
+  // Style the calendar labels
+  :global(.react-activity-calendar__legend-month),
+  :global(.react-activity-calendar__legend-weekday) {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  @include mobile {
+    padding: 20px 16px;
+  }
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.statPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--color-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+  text-decoration: none;
+
+  &:hover {
+    border-color: var(--border-medium);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.statValue {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+}

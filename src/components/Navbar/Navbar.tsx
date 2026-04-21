@@ -70,6 +70,22 @@ export default function Navbar() {
           </motion.a>
         </nav>
 
+        <motion.button
+          className={styles.cmdBtn}
+          onClick={() => {
+            const e = new KeyboardEvent("keydown", { key: "k", metaKey: true, bubbles: true });
+            document.dispatchEvent(e);
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          aria-label="Open command palette"
+          title="Command palette (⌘K)"
+        >
+          <span className={styles.cmdKey}>⌘</span>
+          <span className={styles.cmdK}>K</span>
+        </motion.button>
+
         <DarkModeToggle />
 
         <button

@@ -10,6 +10,10 @@ import Projects from "@/components/Projects/Projects";
 import Experience from "@/components/Experience/Experience";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
+import GitHubActivity from "@/components/GitHubActivity/GitHubActivity";
+import Testimonials from "@/components/Testimonials/Testimonials";
+import CommandPalette from "@/components/CommandPalette/CommandPalette";
+import SectionReveal from "@/components/SectionReveal/SectionReveal";
 import { AnimatePresence, motion } from "framer-motion";
 
 const ParticleBackground = dynamic(
@@ -33,13 +37,16 @@ export default function Home() {
           >
             <ParticleBackground />
             <Navbar />
+            <CommandPalette />
             <main>
               <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <Contact />
+              <SectionReveal><About /></SectionReveal>
+              <SectionReveal delay={0.05}><Skills /></SectionReveal>
+              <SectionReveal delay={0.05}><Projects /></SectionReveal>
+              <SectionReveal delay={0.05}><Experience /></SectionReveal>
+              <SectionReveal delay={0.05}><GitHubActivity /></SectionReveal>
+              <SectionReveal delay={0.05}><Testimonials /></SectionReveal>
+              <SectionReveal delay={0.05}><Contact /></SectionReveal>
             </main>
             <Footer />
           </motion.div>

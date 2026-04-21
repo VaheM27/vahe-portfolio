@@ -146,6 +146,7 @@ export const projects = [
     liveUrl: "https://yanium.com",
     githubUrl: "#",
     featured: true,
+    previewImage: "/projects/yanium-preview.png",
   },
   {
     id: 2,
