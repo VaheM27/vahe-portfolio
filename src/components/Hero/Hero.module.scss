@@ -60,7 +60,7 @@
 
   @include tablet {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 0;
   }
 }
 
@@ -122,6 +122,12 @@
   color: $text-primary;
   margin-bottom: 22px;
   min-height: 2.4rem;
+  overflow: hidden;
+
+  @include mobile {
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
+    min-height: 3rem; // allow wrapping on mobile
+  }
 }
 
 .rolePrefix  { color: $text-secondary; }
@@ -190,7 +196,7 @@
   align-items: center;
 
   @include tablet {
-    order: -1;
+    display: none;
   }
 }
 

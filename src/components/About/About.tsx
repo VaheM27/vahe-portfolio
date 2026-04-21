@@ -1,7 +1,6 @@
 "use client";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { FiUser, FiMapPin, FiMail, FiCode, FiPhone, FiBookOpen } from "react-icons/fi";
 import { personalInfo, education, languages } from "@/data/portfolio";
 import styles from "./About.module.scss";
@@ -73,30 +72,6 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.35 }}
           >
-            <div className={styles.avatarWrap}>
-              <div className={styles.avatarRing} />
-              <div className={styles.avatarInner}>
-                <Image
-                  src="/vahe/me.png"
-                  alt="Vahe Mnatsakanyan"
-                  className={styles.avatarPhoto}
-                  width={190}
-                  height={190}
-                />
-              </div>
-              <div className={styles.avatarOrbit}>
-                {["⚛️", "🚀", "💻", "✨"].map((emoji, i) => (
-                  <span
-                    key={i}
-                    className={styles.orbitDot}
-                    style={{ "--i": i } as React.CSSProperties}
-                  >
-                    {emoji}
-                  </span>
-                ))}
-              </div>
-            </div>
-
             <div className={styles.statsGrid}>
               {stats.map((s, i) => (
                 <motion.div
