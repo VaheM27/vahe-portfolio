@@ -1,151 +1,245 @@
 @use "../../styles/variables" as *;
 
-// ─── Full-screen overlay ──────────────────────────────────────────────────────
+// ─── Overlay ──────────────────────────────────────────────────────────────────
 .overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
   background: var(--bg-primary);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // Subtle dot-grid background
 .bgDots {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(var(--accent-rgb), 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(var(--accent-rgb), 0.12) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
 }
 
-// ─── Road strip ───────────────────────────────────────────────────────────────
-.roadStrip {
+// ─── Ghost percentage — giant decorative number ───────────────────────────────
+.ghostPct {
   position: absolute;
-  left: 0;
-  right: 0;
-  // Road sits at 38% from bottom so car is roughly below center
-  bottom: 36%;
-  height: 6px;
-  background: rgba(var(--accent-rgb), 0.12);
-  border-radius: 3px;
-}
-
-// Dashed center line running the full road
-.centerLine {
-  position: absolute;
-  inset: 50% 0 auto;
-  transform: translateY(-50%);
-  height: 2px;
-  background: repeating-linear-gradient(
-    to right,
-    rgba(var(--accent-rgb), 0.35) 0px,
-    rgba(var(--accent-rgb), 0.35) 18px,
-    transparent 18px,
-    transparent 34px
-  );
-  border-radius: 1px;
-}
-
-// ─── Car ─────────────────────────────────────────────────────────────────────
-// Centered horizontally, sitting just on top of the road strip
-.carWrap {
-  position: absolute;
-  // horizontally center the car (car is ~180px wide at 90px height)
-  left: 50%;
-  margin-left: -90px;
-  // bottom aligns wheels to road
-  bottom: calc(36% + 6px);
-}
-
-.carImg {
-  display: block;
-  height: 90px;
-  width: auto;
+  font-size: clamp(180px, 30vw, 320px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  @include gradient-text(var(--grad-primary));
+  opacity: 0.05;
   user-select: none;
-  filter:
-    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.35))
-    drop-shadow(0 0 40px rgba(var(--accent-rgb), 0.15));
-}
-
-// Bounce while driving in
-.carDriving .carImg {
-  animation: driveBounce 0.18s ease-in-out infinite alternate;
-}
-
-@keyframes driveBounce {
-  from { transform: translateY(0)    rotate(-0.4deg); }
-  to   { transform: translateY(-5px) rotate(0.4deg);  }
-}
-
-// ─── Brake dust ───────────────────────────────────────────────────────────────
-.brakeDust {
-  position: absolute;
-  left: -20px;
-  bottom: 4px;
-  width: 40px;
-  height: 28px;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(var(--accent-rgb), 0.35) 0%,
-    rgba(200, 180, 150, 0.15) 40%,
-    transparent 70%
-  );
-  filter: blur(6px);
-  transform-origin: right center;
   pointer-events: none;
+  transition: all 0.45s ease-out;
+  bottom: 10%;
+  right: 4%;
 }
 
-// ─── Logo popup ───────────────────────────────────────────────────────────────
-// Appears above the car — like the driver "stepping out"
-.logoPopup {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  // positions it above the car (car bottom = 36%+6px, car height = 90px, add gap)
-  bottom: calc(36% + 6px + 90px + 24px);
+// ─── Center content ───────────────────────────────────────────────────────────
+.content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 36px;
+}
+
+// ─── Logo ─────────────────────────────────────────────────────────────────────
+.logoWrap {
+  position: relative;
+  @include flex-center;
 }
 
 .glowBlob {
   position: absolute;
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(var(--accent-rgb), 0.22) 0%, transparent 70%);
-  animation: pulseGlow 2.4s ease-in-out infinite;
+  animation: pulse-glow 2.4s ease-in-out infinite;
   pointer-events: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
-@keyframes pulseGlow {
-  0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
-  50%       { transform: translate(-50%, -50%) scale(1.15); opacity: 1;  }
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50%       { transform: scale(1.15); opacity: 1;  }
 }
 
 .logoImg {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   object-fit: contain;
   position: relative;
   z-index: 1;
+  animation: glitch 4s infinite;
   filter: drop-shadow(0 0 24px rgba(var(--accent-rgb), 0.4));
 }
 
-.tagline {
-  font-family: $font-mono;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  white-space: nowrap;
+// Glitch: brief translate + hue flicker every ~4 seconds
+@keyframes glitch {
+  0%, 88%, 100% {
+    transform: translate(0);
+    filter: drop-shadow(0 0 24px rgba(var(--accent-rgb), 0.4));
+  }
+  89% {
+    transform: translate(-5px, 1px) skewX(-3deg);
+    filter: drop-shadow(0 0 24px rgba(var(--accent-rgb), 0.4)) hue-rotate(40deg) brightness(1.4);
+  }
+  90% {
+    transform: translate(5px, -1px) skewX(3deg);
+    filter: drop-shadow(0 0 24px rgba(var(--accent-rgb), 0.4)) hue-rotate(-40deg);
+  }
+  91% {
+    transform: translate(-2px, 0);
+    filter: drop-shadow(0 0 24px rgba(var(--accent-rgb), 0.4));
+  }
+  92% { transform: translate(0); }
 }
 
-// ─── Curtain wipe ─────────────────────────────────────────────────────────────
+// ─── Terminal window ──────────────────────────────────────────────────────────
+.terminal {
+  width: 340px;
+  background: #0d0d0d;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.termHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.termDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.termTitle {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.35);
+  margin-left: 6px;
+}
+
+.termBody {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 108px;
+}
+
+.termLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.prompt {
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.lineActive {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.lineDone {
+  color: #4ade80;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--accent);
+  border-radius: 1px;
+  margin-left: 2px;
+  animation: blink-cursor 0.9s step-end infinite;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+// ─── Progress ─────────────────────────────────────────────────────────────────
+.progressWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 340px;
+}
+
+.barTrack {
+  width: 100%;
+  height: 3px;
+  background: rgba(var(--accent-rgb), 0.12);
+  border-radius: 3px;
+  position: relative;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--grad-primary);
+  position: relative;
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6);
+  // No CSS transition here — Framer Motion owns the width animation
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent), 0 0 4px var(--accent-alt);
+  }
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statusLabel {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.pct {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  font-weight: 700;
+  @include gradient-text(var(--grad-primary));
+}
+
+// ─── Exit: curtain wipes up from bottom ───────────────────────────────────────
 .curtain {
   position: absolute;
   inset-inline: 0;
