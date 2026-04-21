@@ -77,6 +77,11 @@
   // nothing special on desktop
   @include tablet {
     order: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 90px; // room for the absolute SCROLL indicator
   }
 }
 
@@ -149,6 +154,10 @@
   line-height: 1.75;
   max-width: 480px;
   margin-bottom: 36px;
+
+  @include tablet {
+    max-width: 100%;
+  }
 }
 
 // ── Actions ─────────────────────────────────────────────────────────────────
@@ -157,6 +166,10 @@
   gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 40px;
+
+  @include tablet {
+    justify-content: center;
+  }
 }
 
 // ── Stats row ───────────────────────────────────────────────────────────────
@@ -164,6 +177,10 @@
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
+
+  @include tablet {
+    justify-content: center;
+  }
 }
 
 .stat {
