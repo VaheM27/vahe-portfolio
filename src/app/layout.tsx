@@ -4,7 +4,7 @@ import Cursor from "@/components/Cursor/Cursor";
 import ScrollProgress from "@/components/ScrollProgress/ScrollProgress";
 import "./globals.scss";
 
-const BASE_URL = "https://vahe-portfolio-psi.vercel.app";
+const BASE_URL = "https://vahemn.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Vahe Mnatsakanyan — Frontend Developer",
     description:
       "Frontend Developer crafting immersive web & 3D experiences with React, Next.js & Three.js.",
-    siteName: "Vahe Mnatsakanyan Portfolio",
+    siteName: "vahemn.dev",
     images: [
       {
         url: "/og-image.png",
