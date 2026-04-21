@@ -40,9 +40,8 @@ export default function Navbar() {
     >
       <div className={`container ${styles.inner}`}>
         <a href="#" className={styles.logo}>
-          <span className={styles.bracket}>&lt;</span>
-          <span className={styles.logoName}>VM</span>
-          <span className={styles.bracket}>/&gt;</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/og-image.png" alt="VM Logo" className={styles.logoImg} />
         </a>
 
         <nav className={styles.nav}>
