@@ -1,17 +1,94 @@
-.track {
+// ── Road strip at bottom of viewport ─────────────────────────────────────────
+.road {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 2.5px;
-  z-index: 99999;
-  background: transparent;
+  height: 72px;        // enough room for car (52px) + road track below
+  z-index: 9000;
+  pointer-events: none;
 }
 
-.bar {
+// ── Track line ────────────────────────────────────────────────────────────────
+.track {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+// Dashed upcoming road (full width behind driven)
+.upcoming {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(var(--accent-rgb), 0.18) 0px,
+    rgba(var(--accent-rgb), 0.18) 14px,
+    transparent 14px,
+    transparent 26px
+  );
+  border-radius: 2px;
+}
+
+// Filled driven road
+.driven {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   background: var(--grad-primary);
-  border-radius: 0 2px 2px 0;
-  transition: width 0.08s linear;
+  border-radius: 2px;
   box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
+  transition: width 0.08s linear;
+}
+
+// ── Dust trail ────────────────────────────────────────────────────────────────
+.dust {
+  position: absolute;
+  bottom: 17px;
+  width: 24px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(var(--accent-rgb), 0.28) 0%,
+    transparent 70%
+  );
+  filter: blur(4px);
+  animation: dustPuff 0.2s ease-out;
+  pointer-events: none;
+}
+
+@keyframes dustPuff {
+  from { opacity: 0.9; transform: scaleX(1.4) scaleY(0.7); }
+  to   { opacity: 0.4; transform: scaleX(2.2) scaleY(1.1); }
+}
+
+// ── Car ───────────────────────────────────────────────────────────────────────
+.car {
+  position: absolute;
+  bottom: 18px;         // sits just on top of the track
+  transition: left 0.08s linear;
+
+  img {
+    display: block;
+    height: 52px;
+    width: auto;
+    user-select: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  }
+}
+
+// Bounce animation while driving
+.driving img {
+  animation: carBounce 0.18s ease-in-out infinite alternate;
+}
+
+@keyframes carBounce {
+  from { transform: translateY(0)    rotate(-0.5deg); }
+  to   { transform: translateY(-3px) rotate(0.5deg);  }
 }
