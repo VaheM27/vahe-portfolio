@@ -80,15 +80,32 @@
     width: auto;
     user-select: none;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+    // smooth flip on direction change
+    transition: transform 0.25s ease;
   }
 }
 
-// Bounce animation while driving
-.driving img {
+// Flip car to face left when scrolling back up
+.reversed img {
+  transform: scaleX(-1);
+}
+
+// Bounce while driving forward
+.driving:not(.reversed) img {
   animation: carBounce 0.18s ease-in-out infinite alternate;
 }
 
+// Bounce while driving in reverse
+.driving.reversed img {
+  animation: carBounceReverse 0.18s ease-in-out infinite alternate;
+}
+
 @keyframes carBounce {
-  from { transform: translateY(0)    rotate(-0.5deg); }
-  to   { transform: translateY(-3px) rotate(0.5deg);  }
+  from { transform: scaleX(1)  translateY(0)    rotate(-0.5deg); }
+  to   { transform: scaleX(1)  translateY(-3px) rotate(0.5deg);  }
+}
+
+@keyframes carBounceReverse {
+  from { transform: scaleX(-1) translateY(0)    rotate(0.5deg);  }
+  to   { transform: scaleX(-1) translateY(-3px) rotate(-0.5deg); }
 }
