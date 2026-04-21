@@ -8,17 +8,17 @@ import { personalInfo } from "@/data/portfolio";
 import styles from "./Hero.module.scss";
 
 const techBadges = [
-  { icon: SiReact,      label: "React",      color: "#61dafb", pos: "topLeft"    },
-  { icon: SiTypescript, label: "TypeScript",  color: "#3178c6", pos: "topRight"   },
-  { icon: SiNextdotjs,  label: "Next.js",     color: "#000000", pos: "bottomRight"},
-  { icon: SiThreedotjs, label: "Three.js",    color: "#049ef4", pos: "bottomLeft" },
-  { icon: SiNodedotjs,  label: "Node.js",     color: "#339933", pos: "middleRight"},
+  { icon: SiReact,      label: "React",      color: "#61dafb" },
+  { icon: SiTypescript, label: "TypeScript",  color: "#3178c6" },
+  { icon: SiNextdotjs,  label: "Next.js",     color: "#000000" },
+  { icon: SiThreedotjs, label: "Three.js",    color: "#049ef4" },
+  { icon: SiNodedotjs,  label: "Node.js",     color: "#339933" },
 ];
 
 const stats = [
   { value: "3+", label: "Years Exp." },
-  { value: "8+", label: "Projects" },
-  { value: "4",  label: "Companies" },
+  { value: "8+", label: "Projects"   },
+  { value: "4",  label: "Companies"  },
 ];
 
 export default function Hero() {
@@ -136,41 +136,37 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
         >
-          <div className={styles.photoWrap}>
-            {/* Glow ring */}
-            <div className={styles.glowRing} />
-
-            {/* Photo */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/vahe/me.png" alt="Vahe Mnatsakanyan" className={styles.photo} />
-
-            {/* Floating tech badges */}
+          {/* Badge stack — desktop only, to the left of photo */}
+          <div className={styles.badgeStack}>
             {techBadges.map((badge, i) => (
               <motion.div
                 key={badge.label}
-                className={`${styles.techBadge} ${styles[badge.pos]}`}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.1 + i * 0.1, type: "spring", stiffness: 200 }}
+                className={styles.techBadge}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 1.1 + i * 0.1 }}
+                style={{ animationDelay: `${i * 0.4}s` }}
               >
                 <badge.icon size={14} style={{ color: badge.color, flexShrink: 0 }} />
                 <span>{badge.label}</span>
               </motion.div>
             ))}
           </div>
+
+          {/* Photo */}
+          <div className={styles.photoWrap}>
+            <div className={styles.glowRing} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/vahe/me.png" alt="Vahe Mnatsakanyan" className={styles.photo} />
+          </div>
         </motion.div>
       </div>
 
       {/* Fixed side decorations */}
-      <motion.div
-        className={styles.socials}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-      >
+      <motion.div className={styles.socials} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}>
         {[
-          { icon: FiGithub,   href: personalInfo.social.github,   label: "GitHub"   },
-          { icon: FiLinkedin, href: personalInfo.social.linkedin,  label: "LinkedIn" },
+          { icon: FiGithub,   href: personalInfo.social.github,  label: "GitHub"   },
+          { icon: FiLinkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
         ].map(({ icon: Icon, href, label }) => (
           <a key={label} href={href} target="_blank" rel="noopener noreferrer"
              className={styles.socialLink} aria-label={label}>
@@ -180,28 +176,13 @@ export default function Hero() {
         <div className={styles.socialLine} />
       </motion.div>
 
-      <motion.div
-        className={styles.emailSide}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <a href={`mailto:${personalInfo.email}`} className={styles.email}>
-          {personalInfo.email}
-        </a>
+      <motion.div className={styles.emailSide} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}>
+        <a href={`mailto:${personalInfo.email}`} className={styles.email}>{personalInfo.email}</a>
         <div className={styles.emailLine} />
       </motion.div>
 
-      <motion.div
-        className={styles.scrollHint}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
+      <motion.div className={styles.scrollHint} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
           <FiArrowDown size={20} />
         </motion.div>
         <span>Scroll</span>
