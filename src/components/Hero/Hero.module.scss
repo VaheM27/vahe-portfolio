@@ -8,50 +8,67 @@
   padding-top: 100px;
   overflow: hidden;
   background: var(--bg-primary);
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 55vw;
-    height: 55vw;
-    max-width: 800px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(var(--accent-5-rgb), 0.18) 0%,
-      rgba(var(--accent-alt-rgb), 0.06) 50%,
-      transparent 70%
-    );
-    pointer-events: none;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -5%;
-    left: -10%;
-    width: 45vw;
-    height: 45vw;
-    max-width: 600px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(var(--accent-4-rgb), 0.12) 0%,
-      rgba(var(--accent-3-rgb), 0.06) 50%,
-      transparent 70%
-    );
-    pointer-events: none;
-  }
 }
 
+// ── Parallax blobs ──────────────────────────────────────────────────────────
+.blob1 {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 800px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--accent-5-rgb), 0.18) 0%,
+    rgba(var(--accent-alt-rgb), 0.06) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.12s ease-out;
+}
+
+.blob2 {
+  position: absolute;
+  bottom: -5%;
+  left: -10%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--accent-4-rgb), 0.12) 0%,
+    rgba(var(--accent-3-rgb), 0.06) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.18s ease-out;
+}
+
+// ── Two-column layout ───────────────────────────────────────────────────────
 .content {
   position: relative;
   z-index: 2;
-  max-width: 780px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  gap: 64px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 }
 
+.left {
+  max-width: 600px;
+}
+
+// ── Badge ───────────────────────────────────────────────────────────────────
 .badge {
   display: inline-flex;
   align-items: center;
@@ -78,15 +95,11 @@
 }
 
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
 }
 
+// ── Text ────────────────────────────────────────────────────────────────────
 .greeting {
   font-family: $font-mono;
   font-size: 1.05rem;
@@ -95,7 +108,7 @@
 }
 
 .name {
-  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -104,37 +117,161 @@
 }
 
 .roleWrap {
-  font-size: clamp(1.3rem, 3.2vw, 2rem);
+  font-size: clamp(1.1rem, 2.6vw, 1.7rem);
   font-weight: 600;
   color: $text-primary;
   margin-bottom: 22px;
-  min-height: 2.6rem;
+  min-height: 2.4rem;
 }
 
-.rolePrefix {
-  color: $text-secondary;
-}
-
-.typeText {
-  @include gradient-text(var(--grad-primary));
-  font-weight: 700;
-}
+.rolePrefix  { color: $text-secondary; }
+.typeText    { @include gradient-text(var(--grad-primary)); font-weight: 700; }
 
 .tagline {
-  font-size: clamp(0.95rem, 1.7vw, 1.08rem);
+  font-size: clamp(0.9rem, 1.5vw, 1.02rem);
   color: $text-secondary;
   line-height: 1.75;
-  max-width: 520px;
-  margin-bottom: 42px;
+  max-width: 480px;
+  margin-bottom: 36px;
 }
 
+// ── Actions ─────────────────────────────────────────────────────────────────
 .actions {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 }
 
+// ── Stats row ───────────────────────────────────────────────────────────────
+.stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -16px;
+    top: 8%;
+    height: 84%;
+    width: 1px;
+    background: var(--border-medium);
+  }
+}
+
+.statValue {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+  @include gradient-text(var(--grad-primary));
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+// ── Right column — photo ────────────────────────────────────────────────────
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include tablet {
+    order: -1;
+  }
+}
+
+.photoWrap {
+  position: relative;
+  width: 340px;
+  height: 340px;
+
+  @include mobile {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+.glowRing {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--accent) 0%,
+    var(--accent-alt) 40%,
+    transparent 60%,
+    var(--accent) 100%
+  );
+  animation: spinRing 6s linear infinite;
+  opacity: 0.5;
+  filter: blur(2px);
+}
+
+@keyframes spinRing {
+  to { transform: rotate(360deg); }
+}
+
+.photo {
+  position: absolute;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 4px solid var(--bg-primary);
+  z-index: 1;
+}
+
+// ── Floating tech badges ─────────────────────────────────────────────────────
+.techBadge {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  padding: 6px 12px 6px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  animation: floatBadge 3s ease-in-out infinite;
+
+  &.topLeft     { top: -8%;  left: -28%;  animation-delay: 0s;    }
+  &.topRight    { top: 4%;   right: -30%; animation-delay: 0.6s;  }
+  &.middleRight { top: 44%;  right: -32%; animation-delay: 1.2s;  }
+  &.bottomRight { bottom: 6%; right: -26%; animation-delay: 0.3s; }
+  &.bottomLeft  { bottom: 2%; left: -24%; animation-delay: 0.9s;  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-6px);  }
+}
+
+// ── Fixed side decorations ──────────────────────────────────────────────────
 .socials {
   position: fixed;
   left: clamp(14px, 2.5vw, 36px);
@@ -145,9 +282,7 @@
   gap: 12px;
   z-index: 10;
 
-  @include tablet {
-    display: none;
-  }
+  @include tablet { display: none; }
 }
 
 .socialLink {
@@ -185,9 +320,7 @@
   gap: 12px;
   z-index: 10;
 
-  @include tablet {
-    display: none;
-  }
+  @include tablet { display: none; }
 }
 
 .email {
@@ -198,9 +331,7 @@
   writing-mode: vertical-rl;
   transition: color 0.2s;
 
-  &:hover {
-    color: var(--accent);
-  }
+  &:hover { color: var(--accent); }
 }
 
 .emailLine {
@@ -209,6 +340,7 @@
   background: linear-gradient(to bottom, var(--border-medium), transparent);
 }
 
+// ── Scroll hint ─────────────────────────────────────────────────────────────
 .scrollHint {
   position: absolute;
   bottom: 36px;
@@ -225,7 +357,5 @@
   text-transform: uppercase;
   z-index: 2;
 
-  svg {
-    color: var(--accent);
-  }
+  svg { color: var(--accent); }
 }
