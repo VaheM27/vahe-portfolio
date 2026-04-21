@@ -65,7 +65,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             <span className={styles.termDot} style={{ background: "#ff5f57" }} />
             <span className={styles.termDot} style={{ background: "#febc2e" }} />
             <span className={styles.termDot} style={{ background: "#28c840" }} />
-            <span className={styles.termTitle}>vm — portfolio</span>
+            <span className={styles.termTitle}>vahemn.dev</span>
           </div>
           <div className={styles.termBody}>
             <AnimatePresence>
