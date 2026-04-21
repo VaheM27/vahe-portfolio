@@ -10,7 +10,7 @@ export default function ScrollProgress() {
   const [driving, setDriving] = useState(false);
   const [reversed, setReversed] = useState(false);
   const prevPct = useRef(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     const onScroll = () => {
