@@ -8,11 +8,11 @@ import { personalInfo } from "@/data/portfolio";
 import styles from "./Hero.module.scss";
 
 const techBadges = [
-  { icon: SiReact,      label: "React",      color: "#61dafb" },
-  { icon: SiTypescript, label: "TypeScript",  color: "#3178c6" },
-  { icon: SiNextdotjs,  label: "Next.js",     color: "#000000" },
-  { icon: SiThreedotjs, label: "Three.js",    color: "#049ef4" },
-  { icon: SiNodedotjs,  label: "Node.js",     color: "#339933" },
+  { icon: SiReact,      label: "React",      color: "#61dafb", pos: "pos1" },
+  { icon: SiTypescript, label: "TypeScript",  color: "#3178c6", pos: "pos2" },
+  { icon: SiNextdotjs,  label: "Next.js",     color: "#111111", pos: "pos3" },
+  { icon: SiThreedotjs, label: "Three.js",    color: "#049ef4", pos: "pos4" },
+  { icon: SiNodedotjs,  label: "Node.js",     color: "#339933", pos: "pos5" },
 ];
 
 const stats = [
@@ -38,11 +38,43 @@ export default function Hero() {
 
   return (
     <section className={styles.hero} id="hero">
-      {/* Parallax blobs */}
       <div ref={blob1Ref} className={styles.blob1} />
       <div ref={blob2Ref} className={styles.blob2} />
 
       <div className={`container ${styles.content}`}>
+
+        {/* ── RIGHT COLUMN — rendered first in DOM so CSS order:-1 on mobile puts it on top ── */}
+        <motion.div
+          className={styles.right}
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+        >
+          {/* Outer bounds wrapper — badges are absolutely positioned inside this */}
+          <div className={styles.photoOuter}>
+            {/* Floating badges — hidden on mobile */}
+            {techBadges.map((badge, i) => (
+              <motion.div
+                key={badge.label}
+                className={`${styles.techBadge} ${styles[badge.pos]}`}
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 1.1 + i * 0.12, type: "spring", stiffness: 180 }}
+              >
+                <badge.icon size={14} style={{ color: badge.color, flexShrink: 0 }} />
+                <span>{badge.label}</span>
+              </motion.div>
+            ))}
+
+            {/* Photo */}
+            <div className={styles.photoWrap}>
+              <div className={styles.glowRing} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/vahe/me.png" alt="Vahe Mnatsakanyan" className={styles.photo} />
+            </div>
+          </div>
+        </motion.div>
+
         {/* ── LEFT COLUMN ── */}
         <div className={styles.left}>
           <motion.div
@@ -113,7 +145,6 @@ export default function Hero() {
             <a href="#contact"  className="btn-outline">Get In Touch</a>
           </motion.div>
 
-          {/* Stats row */}
           <motion.div
             className={styles.stats}
             initial={{ opacity: 0, y: 16 }}
@@ -129,37 +160,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT COLUMN ── */}
-        <motion.div
-          className={styles.right}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-        >
-          {/* Badge stack — desktop only, to the left of photo */}
-          <div className={styles.badgeStack}>
-            {techBadges.map((badge, i) => (
-              <motion.div
-                key={badge.label}
-                className={styles.techBadge}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 1.1 + i * 0.1 }}
-                style={{ animationDelay: `${i * 0.4}s` }}
-              >
-                <badge.icon size={14} style={{ color: badge.color, flexShrink: 0 }} />
-                <span>{badge.label}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Photo */}
-          <div className={styles.photoWrap}>
-            <div className={styles.glowRing} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/vahe/me.png" alt="Vahe Mnatsakanyan" className={styles.photo} />
-          </div>
-        </motion.div>
       </div>
 
       {/* Fixed side decorations */}
