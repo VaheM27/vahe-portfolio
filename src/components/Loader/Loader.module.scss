@@ -203,7 +203,7 @@
   background: var(--grad-primary);
   position: relative;
   box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6);
-  transition: width 0.45s ease-out;
+  // No CSS transition here — Framer Motion owns the width animation
 
   &::after {
     content: "";

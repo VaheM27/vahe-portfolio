@@ -93,6 +93,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
           <div className={styles.barTrack}>
             <motion.div
               className={styles.barFill}
+              initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.45, ease: "easeOut" }}
             />
