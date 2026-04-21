@@ -47,24 +47,18 @@
 }
 
 .logo {
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  transition: opacity 0.2s;
-  margin-right: 4px;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
-  &:hover {
-    opacity: 0.8;
-  }
+  margin-right: 4px;
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.8; }
 }
 
-.bracket {
-  color: var(--accent);
-}
-
-.logoName {
-  @include gradient-text(var(--grad-primary));
-  margin: 0 1px;
+.logoImg {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav {

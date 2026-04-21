@@ -24,6 +24,8 @@
   padding: 32px;
   box-shadow: var(--shadow-sm);
   overflow-x: auto;
+  display: flex;
+  justify-content: center;
 
   // Style the calendar labels
   :global(.react-activity-calendar__legend-month),

@@ -6,52 +6,86 @@
   align-items: center;
   position: relative;
   padding-top: 100px;
-  overflow: hidden;
   background: var(--bg-primary);
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 55vw;
-    height: 55vw;
-    max-width: 800px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(var(--accent-5-rgb), 0.18) 0%,
-      rgba(var(--accent-alt-rgb), 0.06) 50%,
-      transparent 70%
-    );
-    pointer-events: none;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -5%;
-    left: -10%;
-    width: 45vw;
-    height: 45vw;
-    max-width: 600px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(var(--accent-4-rgb), 0.12) 0%,
-      rgba(var(--accent-3-rgb), 0.06) 50%,
-      transparent 70%
-    );
-    pointer-events: none;
-  }
 }
 
+// ── Parallax blobs ──────────────────────────────────────────────────────────
+.blob1 {
+  position: absolute;
+  top: -10%; right: -5%;
+  width: 55vw; height: 55vw;
+  max-width: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(var(--accent-5-rgb), 0.18) 0%,
+    rgba(var(--accent-alt-rgb), 0.06) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.12s ease-out;
+}
+
+.blob2 {
+  position: absolute;
+  bottom: -5%; left: -10%;
+  width: 45vw; height: 45vw;
+  max-width: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(var(--accent-4-rgb), 0.12) 0%,
+    rgba(var(--accent-3-rgb), 0.06) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.18s ease-out;
+}
+
+// ── Two-column layout ───────────────────────────────────────────────────────
+// Right column is first in DOM so we can use order to flip on mobile
 .content {
   position: relative;
   z-index: 2;
-  max-width: 780px;
+  display: grid;
+  grid-template-columns: minmax(0, 420px) 1fr;
+  align-items: center;
+  gap: 40px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
 
+// Right column (photo) — first in DOM
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // On mobile: sits above text via order
+  @include tablet {
+    order: -1;
+    padding-top: 16px;
+    padding-bottom: 32px;
+  }
+}
+
+// Left column (text) — second in DOM, visually on right side becomes left
+.left {
+  // nothing special on desktop
+  @include tablet {
+    order: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 90px; // room for the absolute SCROLL indicator
+  }
+}
+
+// ── Badge ───────────────────────────────────────────────────────────────────
 .badge {
   display: inline-flex;
   align-items: center;
@@ -69,8 +103,7 @@
 }
 
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--accent-lt);
   animation: blink 2s infinite;
@@ -78,15 +111,11 @@
 }
 
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
 }
 
+// ── Text ────────────────────────────────────────────────────────────────────
 .greeting {
   font-family: $font-mono;
   font-size: 1.05rem;
@@ -95,7 +124,7 @@
 }
 
 .name {
-  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
@@ -104,37 +133,196 @@
 }
 
 .roleWrap {
-  font-size: clamp(1.3rem, 3.2vw, 2rem);
+  font-size: clamp(1rem, 2.4vw, 1.65rem);
   font-weight: 600;
   color: $text-primary;
   margin-bottom: 22px;
-  min-height: 2.6rem;
+  min-height: 2.4rem;
+
+  @include mobile {
+    font-size: clamp(1rem, 5vw, 1.3rem);
+    min-height: 3rem;
+  }
 }
 
-.rolePrefix {
-  color: $text-secondary;
-}
-
-.typeText {
-  @include gradient-text(var(--grad-primary));
-  font-weight: 700;
-}
+.rolePrefix { color: $text-secondary; }
+.typeText   { @include gradient-text(var(--grad-primary)); font-weight: 700; }
 
 .tagline {
-  font-size: clamp(0.95rem, 1.7vw, 1.08rem);
+  font-size: clamp(0.9rem, 1.5vw, 1.02rem);
   color: $text-secondary;
   line-height: 1.75;
-  max-width: 520px;
-  margin-bottom: 42px;
+  max-width: 480px;
+  margin-bottom: 36px;
+
+  @include tablet {
+    max-width: 100%;
+  }
 }
 
+// ── Actions ─────────────────────────────────────────────────────────────────
 .actions {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
+
+  @include tablet {
+    justify-content: center;
+  }
 }
 
+// ── Stats row ───────────────────────────────────────────────────────────────
+.stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+
+  @include tablet {
+    justify-content: center;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -16px; top: 8%;
+    height: 84%; width: 1px;
+    background: var(--border-medium);
+  }
+}
+
+.statValue {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+  @include gradient-text(var(--grad-primary));
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+// ── Photo outer wrapper (badges live inside this) ───────────────────────────
+.photoOuter {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  flex-shrink: 0;
+
+  @include tablet {
+    width: 260px;
+    height: 260px;
+  }
+
+  @include mobile {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+// ── Photo ───────────────────────────────────────────────────────────────────
+.photoWrap {
+  position: absolute;
+  // inset from outer bounds so badges have room at the corners
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 260px;
+
+  @include tablet {
+    width: 220px;
+    height: 220px;
+  }
+
+  @include mobile {
+    width: 190px;
+    height: 190px;
+  }
+}
+
+.glowRing {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--accent) 0%,
+    var(--accent-alt) 40%,
+    transparent 60%,
+    var(--accent) 100%
+  );
+  animation: spinRing 6s linear infinite;
+  opacity: 0.5;
+  filter: blur(2px);
+}
+
+@keyframes spinRing {
+  to { transform: rotate(360deg); }
+}
+
+.photo {
+  position: absolute;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 4px solid var(--bg-primary);
+  z-index: 1;
+}
+
+// ── Floating tech badges (absolute within photoOuter) ───────────────────────
+.techBadge {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--color-white);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  padding: 7px 13px 7px 10px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  animation: floatBadge 3s ease-in-out infinite;
+
+  @include tablet { display: none; }
+
+  // Top-left
+  &.pos1 { top: 14px;  left: 0;   animation-delay: 0s;   }
+  // Top-right
+  &.pos2 { top: 14px;  right: 0;  animation-delay: 0.5s; }
+  // Right middle
+  &.pos3 { top: 43%;   right: 0;  animation-delay: 1.0s; }
+  // Bottom-right
+  &.pos4 { bottom: 14px; right: 0; animation-delay: 1.5s; }
+  // Bottom-left
+  &.pos5 { bottom: 14px; left: 0;  animation-delay: 2.0s; }
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-5px); }
+}
+
+// ── Fixed side decorations ──────────────────────────────────────────────────
 .socials {
   position: fixed;
   left: clamp(14px, 2.5vw, 36px);
@@ -144,15 +332,11 @@
   align-items: center;
   gap: 12px;
   z-index: 10;
-
-  @include tablet {
-    display: none;
-  }
+  @include tablet { display: none; }
 }
 
 .socialLink {
-  width: 36px;
-  height: 36px;
+  width: 36px; height: 36px;
   border-radius: 8px;
   border: 1px solid var(--border-medium);
   background: var(--color-white);
@@ -170,8 +354,7 @@
 }
 
 .socialLine {
-  width: 1px;
-  height: 70px;
+  width: 1px; height: 70px;
   background: linear-gradient(to bottom, var(--border-medium), transparent);
 }
 
@@ -184,10 +367,7 @@
   align-items: center;
   gap: 12px;
   z-index: 10;
-
-  @include tablet {
-    display: none;
-  }
+  @include tablet { display: none; }
 }
 
 .email {
@@ -197,18 +377,15 @@
   letter-spacing: 0.1em;
   writing-mode: vertical-rl;
   transition: color 0.2s;
-
-  &:hover {
-    color: var(--accent);
-  }
+  &:hover { color: var(--accent); }
 }
 
 .emailLine {
-  width: 1px;
-  height: 70px;
+  width: 1px; height: 70px;
   background: linear-gradient(to bottom, var(--border-medium), transparent);
 }
 
+// ── Scroll hint ─────────────────────────────────────────────────────────────
 .scrollHint {
   position: absolute;
   bottom: 36px;
@@ -224,8 +401,5 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   z-index: 2;
-
-  svg {
-    color: var(--accent);
-  }
+  svg { color: var(--accent); }
 }

@@ -50,7 +50,6 @@ export default function GitHubActivity() {
           {[
             { label: "GitHub", value: "@VaheM27", link: "https://github.com/VaheM27" },
             { label: "Repositories", value: "Public repos", link: "https://github.com/VaheM27?tab=repositories" },
-            { label: "Profile", value: "View on GitHub", link: "https://github.com/VaheM27" },
           ].map((item) => (
             <a
               key={item.label}
