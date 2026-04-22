@@ -1,5 +1,6 @@
 "use client";
 import { useState, FormEvent, useEffect } from "react";
+import confetti from "canvas-confetti";
 import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -122,6 +123,14 @@ export default function Contact() {
       setForm({ name: "", email: "", subject: "", message: "" });
       setTouched({});
       setErrors({});
+      // 🎉 Confetti celebration
+      const end = Date.now() + 1800;
+      const colors = ["#059669", "#34d399", "#10b981", "#6ee7b7", "#ffffff"];
+      (function frame() {
+        confetti({ particleCount: 3, angle: 60,  spread: 55, origin: { x: 0 }, colors });
+        confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
     } catch {
       setStatus("idle");
       setToast({
