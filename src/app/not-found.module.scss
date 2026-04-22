@@ -1,0 +1,218 @@
+@use "../styles/variables" as *;
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  overflow: hidden;
+  padding: 24px;
+}
+
+.bgDots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(var(--accent-rgb), 0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+// ─── Center stack ─────────────────────────────────────────────────────────────
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+  width: 100%;
+  max-width: 560px;
+}
+
+// ─── Badge ────────────────────────────────────────────────────────────────────
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border-radius: 100px;
+  padding: 6px 16px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: blink 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+// ─── Big 404 ──────────────────────────────────────────────────────────────────
+.code {
+  font-size: clamp(7rem, 22vw, 13rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  @include gradient-text(var(--grad-hero));
+  margin: 0;
+  user-select: none;
+}
+
+// ─── Terminal ─────────────────────────────────────────────────────────────────
+.terminal {
+  width: 100%;
+  background: #0d0d0d;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  text-align: left;
+}
+
+.termHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.termDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.termTitle {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-left: 6px;
+}
+
+.termBody {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  line-height: 1.6;
+
+  p { margin: 0; }
+}
+
+.prompt {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.cmd {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.err {
+  color: #f87171;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--accent);
+  border-radius: 1px;
+  vertical-align: middle;
+  animation: blinkCursor 0.9s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+// ─── Message ──────────────────────────────────────────────────────────────────
+.message {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+// ─── Car ─────────────────────────────────────────────────────────────────────
+.carWrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 10%;
+}
+
+.road {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(var(--accent-rgb), 0.25) 0px,
+    rgba(var(--accent-rgb), 0.25) 16px,
+    transparent 16px,
+    transparent 30px
+  );
+  border-radius: 2px;
+}
+
+.car {
+  height: 70px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.2));
+  animation: carBounce 2.4s ease-in-out infinite;
+}
+
+@keyframes carBounce {
+  0%, 100% { transform: translateY(0) rotate(-0.3deg); }
+  50%       { transform: translateY(-5px) rotate(0.3deg); }
+}
+
+// ─── CTA Button ───────────────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: white;
+  background: var(--grad-primary);
+  border-radius: 100px;
+  padding: 12px 28px;
+  box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.3);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.4);
+  }
+}
