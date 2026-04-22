@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { FiArrowDown, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiArrowDown, FiGithub, FiLinkedin, FiCopy, FiCheck } from "react-icons/fi";
 import { SiReact, SiTypescript, SiNextdotjs, SiThreedotjs, SiNodedotjs } from "react-icons/si";
 import { personalInfo } from "@/data/portfolio";
 import styles from "./Hero.module.scss";
@@ -24,6 +24,13 @@ const stats = [
 export default function Hero() {
   const blob1Ref = useRef<HTMLDivElement>(null);
   const blob2Ref = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(personalInfo.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -177,7 +184,22 @@ export default function Hero() {
       </motion.div>
 
       <motion.div className={styles.emailSide} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}>
-        <a href={`mailto:${personalInfo.email}`} className={styles.email}>{personalInfo.email}</a>
+        <button onClick={copyEmail} className={styles.email} title="Copy email">
+          {personalInfo.email}
+        </button>
+        <AnimatePresence>
+          {copied && (
+            <motion.span
+              className={styles.copiedToast}
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 8 }}
+              transition={{ duration: 0.2 }}
+            >
+              <FiCheck size={11} /> Copied!
+            </motion.span>
+          )}
+        </AnimatePresence>
         <div className={styles.emailLine} />
       </motion.div>
 
