@@ -175,6 +175,18 @@ export const projects = [
   },
   {
     id: 4,
+    title: "THE FINALS — Enhanced Leaderboard",
+    description:
+      "Community leaderboard platform for THE FINALS with deep contributions: a redesigned global search, a Star Player feature, and full player profiles with detailed stats, history, and seasonal performance. Fast, responsive UI built for browsing the top 10,000 players across platforms and seasons.",
+    tech: ["React.js", "Vite", "Tailwind CSS", "TypeScript"],
+    image: "/projects/the-finals-leaderboard.png",
+    color: "#4ade80",
+    liveUrl: "https://the-finals-leaderboard.com",
+    githubUrl: "#",
+    featured: true,
+  },
+  {
+    id: 5,
     title: "PrimeEin — EIN Filing Service",
     description:
       "Streamlined online platform helping businesses obtain an Employer Identification Number (EIN) from the IRS. Clean, guided multi-step application flow with secure form handling and fast, responsive UI.",
@@ -186,7 +198,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: 5,
+    id: 6,
     title: "Floid — Gaming Portal",
     description:
       "Immersive player-focused portal for The Finals competitive game by Spynix. Features a cinematic landing experience with 3D visuals and interactive elements designed to engage the gaming community.",
@@ -198,7 +210,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: 6,
+    id: 7,
     title: "Skill Injected — Streamer Sites",
     description:
       "A web development service creating custom, game-themed portfolio sites for esports players and streamers. Built unique player profiles with stats, stream schedules, and sponsor sections — delivered in ~14 days.",
@@ -210,7 +222,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: 7,
+    id: 8,
     title: "Prodigy Streamer — Gaming Brand",
     description:
       "Personal brand site for competitive gamer Ethan (ItzProdigy), featuring The Finals gameplay highlights, Twitch stream integration, multi-platform social links, and a Dubby Energy partnership showcase.",
@@ -222,7 +234,7 @@ export const projects = [
     featured: false,
   },
   {
-    id: 8,
+    id: 9,
     title: "Cool Cats — Entertainment Brand",
     description:
       "Frontend for the Cool Cats animated series and entertainment brand. Features episodes, Cooltopia mini-games, merchandise, and vibrant community engagement across platforms, all wrapped in a colorful, character-driven visual experience.",
