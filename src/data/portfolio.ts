@@ -171,7 +171,7 @@ export const projects = [
     color: "#16a34a",
     liveUrl: "https://recrout.com",
     githubUrl: "#",
-    featured: false,
+    featured: true,
   },
   {
     id: 4,
@@ -219,7 +219,7 @@ export const projects = [
     color: "#0d9488",
     liveUrl: "https://www.skillinjected.com",
     githubUrl: "#",
-    featured: false,
+    featured: true,
   },
   {
     id: 8,
@@ -243,7 +243,7 @@ export const projects = [
     color: "#4ade80",
     liveUrl: "https://coolcats.com",
     githubUrl: "#",
-    featured: false,
+    featured: true,
   },
 ];
 
