@@ -135,19 +135,19 @@ export const skillCategories = [
 ];
 
 export const projects = [
-  {
-    id: 1,
-    title: "Yanium — AI Engineering Co.",
-    description:
-      "Frontend for a full-stack AI & product engineering company based in Yerevan. Built with Next.js and SCSS modules with immersive 3D interactive sections using Spline and Three.js. Integrated DigitalOcean Spaces for media management and ensured pixel-perfect, high-performance UI across all devices.",
-    tech: ["Next.js", "TypeScript", "SCSS", "Three.js", "Spline", "DigitalOcean"],
-    image: "/projects/yanium.png",
-    color: "#059669",
-    liveUrl: "https://yanium.com",
-    githubUrl: "#",
-    featured: true,
-    previewImage: "/projects/yanium-preview.png",
-  },
+  // {
+  //   id: 1,
+  //   title: "Yanium — AI Engineering Co.",
+  //   description:
+  //     "Frontend for a full-stack AI & product engineering company based in Yerevan. Built with Next.js and SCSS modules with immersive 3D interactive sections using Spline and Three.js. Integrated DigitalOcean Spaces for media management and ensured pixel-perfect, high-performance UI across all devices.",
+  //   tech: ["Next.js", "TypeScript", "SCSS", "Three.js", "Spline", "DigitalOcean"],
+  //   image: "/projects/yanium.png",
+  //   color: "#059669",
+  //   liveUrl: "https://yanium.com",
+  //   githubUrl: "#",
+  //   featured: true,
+  //   previewImage: "/projects/yanium-preview.png",
+  // },
   {
     id: 2,
     title: "DAO Maker — DeFi Platform",
@@ -250,7 +250,7 @@ export const projects = [
 export const experience = [
   {
     id: 1,
-    company: "Yanium",
+    company: "Sevati",
     role: "Frontend Developer",
     duration: "Jun 2023 – Present",
     type: "Full-time",
